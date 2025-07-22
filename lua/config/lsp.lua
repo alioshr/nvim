@@ -13,24 +13,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Diagnostics
 vim.diagnostic.config({
-  -- Use the default configuration
-  -- virtual_lines = true
-
-  -- Alternatively, customize specific options
-  virtual_lines = {
-    -- Only show virtual line diagnostics for the current cursor line
-    current_line = true,
-    -- Hide virtual text for lines other than the current one
-    only_current_line = true,
-  },
-
-  -- Enable real-time updates
-  update_in_insert = true,
-
-  -- Show diagnostics immediately
-  underline = true,
+  virtual_text = false,
   signs = true,
-  virtual_text = false, -- Disable virtual text globally since we're using virtual_lines
+  underline = true,
+  update_in_insert = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
 })

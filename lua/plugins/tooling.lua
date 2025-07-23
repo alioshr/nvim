@@ -1,7 +1,4 @@
 -- Tooling and misc packages
-return {
-	"j-hui/fidget.nvim",
-	opts = {
-		-- options
-	},
-}
+
+-- This package shows the loading status for all of the plugins when opening Neovim.
+return { "j-hui/fidget.nvim" }

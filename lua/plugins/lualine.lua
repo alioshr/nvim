@@ -5,7 +5,7 @@ return {
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "rebelot/kanagawa.nvim",
+					theme = "kanagawa",
 				},
 				sections = {
 					lualine_a = {},

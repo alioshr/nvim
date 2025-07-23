@@ -1,29 +1,29 @@
 return {
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function()
-            require("lualine").setup({
-                options = {
-                    theme = "tokyonight",
-                },
-                sections = {
-                    lualine_a = {},
-                    lualine_c = { {
-                        "filename",
-                        path = 1,
-                    } },
-                    lualine_b = { 'branch', 'diff', 'diagnostics' },
-                    lualine_x = { 'filetype' },
-                    lualine_y = {
-                        {
-                            "diawgnostics",
-                            sources = { "nvim_workspace_diagnostic" },
-                        },
-                    },
-                    lualine_z = {},
-                },
-            })
-        end,
-    },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					theme = "rebelot/kanagawa.nvim",
+				},
+				sections = {
+					lualine_a = {},
+					lualine_c = { {
+						"filename",
+						path = 1,
+					} },
+					lualine_b = { 'branch', 'diff', 'diagnostics' },
+					lualine_x = { 'filetype' },
+					lualine_y = {
+						{
+							"diawgnostics",
+							sources = { "nvim_workspace_diagnostic" },
+						},
+					},
+					lualine_z = {},
+				},
+			})
+		end,
+	},
 }

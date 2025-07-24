@@ -4,6 +4,8 @@ return {
 	priority = 1000,
 	---@type snacks.Config
 	opts = {
+		dashboard = {
+			enabled = true, },
 		picker = {
 			enabled = true,
 			sources = {
@@ -105,5 +107,34 @@ return {
 			end,
 			desc = "[P]Snacks picker buffers",
 		},
+		{
+			"<leader>gl",
+			function()
+				Snacks.picker.git_log({
+					finder = "git_log",
+					format = "git_log",
+					preview = "git_show",
+					confirm = "git_checkout",
+					layout = "vertical",
+				})
+			end,
+			desc = "Git Log",
+		},
+		{
+			"<leader>gb",
+			function()
+				Snacks.git.blame_line()
+			end,
+			desc = "Git Blame Line",
+		},
+		{
+			"<leader>mk",
+			function()
+				Snacks.picker.keymaps({
+					layout = "vertical",
+				})
+			end,
+			desc = "Keymaps",
+		}
 	},
 }

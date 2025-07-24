@@ -1,5 +1,16 @@
 return {
 	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
+			})
+			vim.cmd.colorscheme("catppuccin")
+		end
+	},
+	{
 		'rebelot/kanagawa.nvim',
 		config = function()
 			-- Default options:
@@ -29,7 +40,7 @@ return {
 			})
 
 			-- setup must be called before loading
-			vim.cmd("colorscheme kanagawa")
+			-- vim.cmd("colorscheme kanagawa")
 		end
 	}
 }

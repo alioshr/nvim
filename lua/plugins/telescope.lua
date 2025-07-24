@@ -9,5 +9,10 @@ return {
 			{ '<leader>fb', '<cmd>Telescope buffers<cr>',    desc = 'Buffers' },
 			{ '<leader>fh', '<cmd>Telescope help_tags<cr>',  desc = 'Help Tags' },
 		},
+		config = function()
+			require('telescope').setup {
+				defaults = { path_display = { "smart" } },
+			}
+		end
 	},
 }

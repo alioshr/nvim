@@ -8,15 +8,19 @@ return {
 		},
 		opts = {
 			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-						},
-					},
-				},
+        lua_ls = {
+          on_attach = function(client)
+            -- Disable the LSP's formatting capabilities to prevent conflicts with conform.nvim
+            client.server_capabilities.documentFormattingProvider = false
+          end,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+            },
+          },
+        },
 				ts_ls = {
 					on_attach = function(client)
 						-- Disable the LSP's formatting capabilities to prevent conflicts with conform.nvim

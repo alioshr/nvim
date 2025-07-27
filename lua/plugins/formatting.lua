@@ -9,7 +9,7 @@ return {
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
           typescript = { "prettier" },
-          typescriptreact = { "prettier" }, -- Add this if you use TSX
+          typescriptreact = { "prettier" },
           json = { "prettier" },
           graphql = { "prettier" },
         },

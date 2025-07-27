@@ -15,6 +15,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
     vim.keymap.set("n", "<leader>f", function()
+      -- First run ESLint fixes if available
+      local clients = vim.lsp.get_clients({ bufnr = 0 })
+      for _, client in ipairs(clients) do
+        if client.name == "eslint" then
+          vim.cmd("EslintFixAll")
+          break
+        end
+      end
+      -- Then run conform formatting
       require("conform").format({ async = true, lsp_fallback = true })
     end, opts)
 

@@ -33,7 +33,7 @@ return {
       function()
         require("mini.diff").toggle_overlay()
       end,
-      desc = "Toggle Comment",
+      desc = "Toggle Git Diff Overlay",
     },
   },
 }

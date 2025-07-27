@@ -5,12 +5,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local opts = { buffer = ev.buf }
 
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "<leader><space>", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "Go to definition" })
+    vim.keymap.set("n", "<leader><space>", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Show hover information" })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf, desc = "Go to implementation" })
+    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "Go to type definition" })
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename symbol" })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code actions" })
     -- Commented out as we are using snacks.picker for references
     -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
       -- Then run conform formatting
       require("conform").format({ async = true, lsp_fallback = true })
-    end, opts)
+    end, { buffer = ev.buf, desc = "Format with ESLint and conform" })
 
     -- open the diagnostic window under the cursor in a flat window
     vim.keymap.set("n", "<leader>d", function()
@@ -34,6 +34,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         border = "rounded",
         source = "always",
       })
-    end, opts)
+    end, { buffer = ev.buf, desc = "Show line diagnostics" })
   end,
 })

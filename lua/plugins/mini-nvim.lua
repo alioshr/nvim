@@ -13,6 +13,19 @@ return {
         style = "sign",
       },
     })
+    require("mini.move").setup({
+      mappings = {
+        left = "∆", -- alt + h
+        right = "¬", -- alt + l
+        down = "ª", -- alt + j
+        up = "º", -- alt + k
+
+        line_left = "<leader>∆", -- alt + h
+        line_right = "¬", -- alt + l
+        line_down = "ª", -- alt + j
+        line_up = "º", -- alt + k
+      },
+    })
   end,
   keys = {
     {

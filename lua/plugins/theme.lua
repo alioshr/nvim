@@ -1,5 +1,11 @@
 return {
   {
+    "Mofiqul/dracula.nvim",
+    config = function()
+      vim.cmd.colorscheme("dracula")
+    end,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -7,7 +13,6 @@ return {
       require("catppuccin").setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
       })
-      vim.cmd.colorscheme("catppuccin")
     end,
   },
   {
@@ -38,9 +43,6 @@ return {
           light = "lotus",
         },
       })
-
-      -- setup must be called before loading
-      -- vim.cmd("colorscheme kanagawa")
     end,
   },
 }

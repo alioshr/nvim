@@ -20,7 +20,7 @@ vim.diagnostic.config({
   update_in_insert = true,
   float = {
     border = "rounded",
-    source = "always",
+    source = true,
     header = "",
     prefix = "",
   },

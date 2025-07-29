@@ -1,6 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
+    lazy = false,
     opts = {},
     dependencies = {
       "OXY2DEV/markview.nvim",
@@ -26,9 +27,17 @@ return {
         strategies = {},
       })
 
-      -- Keymaps defined here to ensure plugin is loaded
-      local cc = require("codecompanion")
-      vim.keymap.set("n", "<leader>cC", cc.chat, { desc = "Code Companion Chat" })
+      vim.keymap.set({ "n", "v" }, "<LocalLeader>A", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+      vim.keymap.set(
+        { "n", "v" },
+        "<LocalLeader>a",
+        "<cmd>CodeCompanionChat Toggle<cr>",
+        { noremap = true, silent = true }
+      )
+      vim.keymap.set("v", "<LocalLeader>ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+      -- Expand 'cc' into 'CodeCompanion' in the command line
+      vim.cmd([[cab cc CodeCompanion]])
     end,
   },
   {

@@ -1,10 +1,12 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true,
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "OXY2DEV/markview.nvim",
     },
     config = function()
       require("nvim-treesitter.configs").setup({

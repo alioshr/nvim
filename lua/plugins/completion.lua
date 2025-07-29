@@ -40,7 +40,10 @@ return {
 
   sources = {
     default = { "lsp", "path", "snippets", "buffer", "copilot" },
-  },
+    per_filetype = {
+    codecompanion = { "codecompanion" },
+  }
+ },
 
   fuzzy = { implementation = "prefer_rust_with_warning" },
 }

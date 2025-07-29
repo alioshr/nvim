@@ -2,7 +2,17 @@ return {
   {
     "Mofiqul/dracula.nvim",
     config = function()
-      vim.cmd.colorscheme("dracula")
+      -- vim.cmd.colorscheme("dracula")
+    end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- Load the colorscheme
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
@@ -37,12 +47,14 @@ return {
         overrides = function(colors) -- add/modify highlights
           return {}
         end,
-        theme = "wave", -- Load "wave" theme
+        theme = "lotus", -- Load "wave" theme
         background = { -- map the value of 'background' option to a theme
           dark = "wave", -- try "dragon" !
           light = "lotus",
         },
       })
+
+      -- Load the colorscheme
     end,
   },
 }

@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     opts = {},
     config = function()
-      require("conform").setup({
+        require("conform").setup({
         formatters_by_ft = {
           lua = { "stylua" },
           javascript = { "prettier" },
@@ -14,10 +14,8 @@ return {
           graphql = { "prettier" },
         },
         formatters = {
-          stylua = {
-            args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
-          },
-          prettier = {
+          stylua = {},
+         prettier = {
             require_cwd = true,
             -- Ensure it finds your project's prettier config
             condition = function(ctx)

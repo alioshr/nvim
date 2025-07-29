@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     opts = {},
     config = function()
-        require("conform").setup({
+      require("conform").setup({
         formatters_by_ft = {
           lua = { "stylua" },
           javascript = { "prettier" },
@@ -14,8 +14,11 @@ return {
           graphql = { "prettier" },
         },
         formatters = {
-          stylua = {},
-         prettier = {
+          stylua = {
+            command = vim.fn.expand("~/.local/share/nvim/mason/bin/stylua"),
+            prepend_args = { "--config-path", vim.fn.expand("~/.config/nvim/.stylua.toml") },
+          },
+          prettier = {
             require_cwd = true,
             -- Ensure it finds your project's prettier config
             condition = function(ctx)
@@ -28,6 +31,10 @@ return {
         },
         format_on_save = {
           timeout_ms = 500,
+          lsp_fallback = true,
+        },
+        default_format_opts = {
+          lsp_fallback = true,
         },
       })
     end,

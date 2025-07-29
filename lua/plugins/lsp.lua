@@ -35,13 +35,12 @@ return {
     config = function(_, opts)
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "eslint", "ts_ls", "tailwindcss" },
+        ensure_installed = { "lua_ls", "eslint", "ts_ls" },
       })
 
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("eslint")
       vim.lsp.enable("ts_ls")
-      vim.lsp.enable("tailwindcss")
 
       local lspconfig = require("lspconfig")
       for server, config in pairs(opts.servers) do

@@ -1,14 +1,23 @@
 return {
+  -- {
+  --   "copilotlsp-nvim/copilot-lsp",
+  --   init = function()
+  --     vim.g.copilot_nes_debounce = 500
+  --     vim.lsp.enable("copilot_ls")
+  --     vim.keymap.set("n", "<tab>", function()
+  --       local _ = require("copilot-lsp.nes").walk_cursor_start_edit()
+  --         or (require("copilot-lsp.nes").apply_pending_nes() and require("copilot-lsp.nes").walk_cursor_end_edit())
+  --     end, { desc = "accept copilot suggestion" })
+  --   end,
+  -- },
+  -- { "github/copilot.vim", {} },
   {
-    "copilotlsp-nvim/copilot-lsp",
-    init = function()
-      vim.g.copilot_nes_debounce = 500
-      vim.lsp.enable("copilot_ls")
-      vim.keymap.set("n", "<tab>", function()
-        local _ = require("copilot-lsp.nes").walk_cursor_start_edit()
-          or (require("copilot-lsp.nes").apply_pending_nes() and require("copilot-lsp.nes").walk_cursor_end_edit())
-      end, { desc = "Accept Copilot suggestion" })
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
     end,
   },
-  { "github/copilot.vim" },
 }

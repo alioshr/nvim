@@ -9,6 +9,9 @@ return {
     },
     picker = {
       enabled = true,
+      include = {
+        "node_modules",
+      },
       sources = {
         buffers = {
           current = false,

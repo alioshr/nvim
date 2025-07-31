@@ -14,6 +14,23 @@ return {
     },
     config = function()
       require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "copilot",
+            model = "4o mini",
+            -- model = "claude-sonnet-4-20250514",
+          },
+          inline = {
+            adapter = "copilot",
+            model = "4o mini",
+            -- model = "claude-sonnet-4-20250514",
+          },
+          cmd = {
+            adapter = "copilot",
+            model = "4o mini",
+            -- model = "claude-sonnet-4-20250514",
+          },
+        },
         extensions = {
           mcphub = {
             callback = "mcphub.extensions.codecompanion",
@@ -24,7 +41,6 @@ return {
             },
           },
         },
-        strategies = {},
       })
 
       vim.keymap.set({ "n", "v" }, "<LocalLeader>A", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })

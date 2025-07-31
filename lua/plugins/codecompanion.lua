@@ -17,18 +17,16 @@ return {
         strategies = {
           chat = {
             adapter = "copilot",
-            model = "4o mini",
-            -- model = "claude-sonnet-4-20250514",
+            model = "gpt-4.1",
           },
           inline = {
             adapter = "copilot",
-            model = "4o mini",
-            -- model = "claude-sonnet-4-20250514",
+            model = "gpt-4.1",
+            28,
           },
           cmd = {
             adapter = "copilot",
-            model = "4o mini",
-            -- model = "claude-sonnet-4-20250514",
+            model = "gpt-4.1",
           },
         },
         extensions = {

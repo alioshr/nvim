@@ -11,6 +11,7 @@ return {
       enabled = true,
       include = {
         "node_modules",
+        ".git",
       },
       sources = {
         buffers = {

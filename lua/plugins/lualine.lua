@@ -10,7 +10,7 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = "catppuccin",
+          theme = "tokyonight",
         },
         sections = {
           lualine_a = {

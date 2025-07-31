@@ -39,9 +39,6 @@ return {
     },
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "copilot" },
-      per_filetype = {
-        codecompanion = { "codecompanion" },
-      },
       providers = {
         copilot = {
           name = "copilot",

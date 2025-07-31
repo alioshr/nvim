@@ -5,9 +5,10 @@ return {
     priority = 49, -- Load BEFORE treesitter
     opts = {
       preview = {
-        filetypes = { "markdown", "codecompanion" },
+        filetypes = { "markdown" },
         ignore_buftypes = {},
       },
     },
   },
 }
+

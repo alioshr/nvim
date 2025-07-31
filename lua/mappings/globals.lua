@@ -12,3 +12,6 @@ vim.keymap.set("n", "<leader>us", ":noh<CR>", { desc = "Clear search highlight" 
 
 -- Copy the path of the current buffer
 vim.keymap.set("n", "<leader>cp", ":let @+=expand('%:p')<CR>", { desc = "Copy the path of the current buffer" })
+
+-- Copy the project root path
+vim.keymap.set("n", "<leader>cr", ":let @+=getcwd()<CR>", { desc = "Copy the project root path" })

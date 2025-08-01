@@ -53,6 +53,7 @@ return {
                   vim.fn.stdpath("config") .. "/lua",
                   "${3rd}/luv/library",
                   "${3rd}/busted/library",
+                  "$XDG_DATA_HOME/nvim/lazy",
                 },
               },
             },

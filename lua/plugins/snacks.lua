@@ -6,6 +6,27 @@ return {
   opts = {
     dashboard = {
       enabled = true,
+      formats = {
+        key = function(item)
+          return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
+        end,
+      },
+      sections = {
+        {
+          section = "terminal",
+          cmd = [[echo 'I am altering the project scope. Pray I don'\''t alter it any further.
+  		-- Project Owner' | cowsay -f vader]],
+          hl = "header",
+          padding = 1,
+          height = 12,
+          indent = 8,
+        },
+        { icon = "", title = "Don't read this crap", padding = 1 },
+        { section = "keys", padding = 1, indent = 2 },
+        { icon = " ", title = "Projects", padding = 1 },
+        { section = "projects", indent = 2, padding = 1 },
+        { section = "startup" },
+      },
     },
     picker = {
       enabled = true,

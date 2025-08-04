@@ -14,7 +14,7 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = [[echo 'I am altering the project scope. Pray I don'\''t alter it any further.
+          cmd = [[echo 'I am altering the project'\''s scope. Pray I don'\''t alter it any further.
   		-- Product Owner' | cowsay -f vader]],
           hl = "header",
           padding = 1,

@@ -15,3 +15,11 @@ vim.keymap.set("n", "<leader>cp", ":let @+=expand('%:p')<CR>", { desc = "Copy th
 
 -- Copy the project root path
 vim.keymap.set("n", "<leader>cr", ":let @+=getcwd()<CR>", { desc = "Copy the project root path" })
+
+-- Close a buffer
+vim.keymap.set("n", "<leader>c", ":bd<CR>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>C", ":bd!<CR>", { desc = "Force close current buffer" })
+
+-- Close neovim
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
+vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit all buffers" })

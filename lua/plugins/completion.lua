@@ -16,26 +16,6 @@ return {
     keymap = {
       ["<Tab>"] = { "accept", "fallback" },
       ["<C><leader>"] = { "show" },
-      --     Copilot LSP Commented out
-      -- ["<Tab>"] = {
-      --   function(cmp)
-      --     if vim.b[vim.api.nvim_get_current_buf()].nes_state then
-      --       cmp.hide()
-      --       return (
-      --         require("copilot-lsp.nes").apply_pending_nes()
-      --         and require("copilot-lsp.nes").walk_cursor_end_edit()
-      --       )
-      --     end
-      --     if cmp.snippet_active() then
-      --       return cmp.accept()
-      --     else
-      --       return cmp.select_and_accept()
-      --     end
-      --   end,
-      --   "accept",
-      --   "snippet_forward",
-      --   "fallback",
-      -- },
     },
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "copilot" },

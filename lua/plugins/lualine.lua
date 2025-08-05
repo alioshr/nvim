@@ -28,7 +28,7 @@ return {
           lualine_x = { "filetype" },
           lualine_y = {
             {
-              "diawgnostics",
+              "diagnostics",
               sources = { "nvim_workspace_diagnostic" },
             },
           },

@@ -1,3 +1,4 @@
+-- Markdown preview plugin for Neovim
 return {
   {
     "OXY2DEV/markview.nvim",
@@ -11,4 +12,3 @@ return {
     },
   },
 }
-

@@ -130,7 +130,7 @@ return {
     {
       "<leader>gv",
       function()
-        require("mini.diff").toggle_overlay()
+        require("mini.diff").toggle_overlay(0)
       end,
       desc = "Toggle Git Diff Overlay",
     },

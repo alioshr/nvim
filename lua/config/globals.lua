@@ -9,4 +9,4 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
 -- local leader
-vim.g.localleader = "\\"
+vim.g.maplocalleader = "\\"

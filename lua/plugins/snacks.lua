@@ -120,18 +120,11 @@ return {
     },
     -- git
     {
-      "<leader>gb",
+      "<leader>gB",
       function()
         Snacks.picker.git_branches()
       end,
       desc = "Git Branches",
-    },
-    {
-      "<leader>gl",
-      function()
-        Snacks.picker.git_log()
-      end,
-      desc = "Git Log",
     },
     {
       "<leader>gL",
@@ -219,13 +212,6 @@ return {
         Snacks.picker.autocmds()
       end,
       desc = "Autocmds",
-    },
-    {
-      "<leader>sb",
-      function()
-        Snacks.picker.lines()
-      end,
-      desc = "Buffer Lines",
     },
     {
       "<leader>sc",

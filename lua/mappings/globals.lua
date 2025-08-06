@@ -23,3 +23,6 @@ vim.keymap.set("n", "<leader>C", ":bd!<CR>", { desc = "Force close current buffe
 -- Close neovim
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
 vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit all buffers" })
+
+--Source
+vim.keymap.set("n", "<leader>so", ":so %<CR>", { desc = "Source current file" })

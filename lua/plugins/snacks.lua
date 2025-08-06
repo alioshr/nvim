@@ -18,7 +18,7 @@ return {
   		-- Product Owner' | cowsay -f vader]],
           hl = "header",
           padding = 1,
-          height = 12,
+          height = 15,
           indent = 8,
         },
         { icon = "", title = "Don't read this crap", padding = 1 },

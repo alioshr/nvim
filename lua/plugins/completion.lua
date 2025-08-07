@@ -1,7 +1,12 @@
 local copilot_utils = require("scripts.copilot-utils")
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
+  dependencies = {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    "rafamadriz/friendly-snippets",
+    "giuxtaposition/blink-cmp-copilot",
+  },
   build = "cargo build --release",
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -15,14 +20,6 @@ return {
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     },
     completion = {
-      trigger = {
-        show_on_backspace_in_keyword = true,
-        show_on_trigger_character = true,
-        show_on_keyword = true,
-        show_on_insert = true,
-        show_on_insert_on_trigger_character = true,
-        prefetch_on_insert = true,
-      },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 0,

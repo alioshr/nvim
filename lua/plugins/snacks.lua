@@ -30,6 +30,9 @@ return {
     },
     picker = {
       enabled = true,
+      layout = {
+        preset = "sidebar",
+      },
       include = {
         "node_modules",
         ".git",
@@ -409,8 +412,6 @@ return {
               },
             },
           },
-          -- Optional layout config
-          -- layout = "ivy",
         })
       end,
       desc = "[P]Snacks picker buffers",

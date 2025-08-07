@@ -66,7 +66,7 @@ return {
           jestCommand = "npm test --",
           jestConfigFile = "custom.jest.config.ts",
           env = { CI = true },
-          cwd = function(path)
+          cwd = function(_)
             return vim.fn.getcwd()
           end,
         }),

@@ -41,5 +41,17 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
+    keys = {
+      { "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", desc = "Git: Stage Hunk" },
+      { "<leader>hS", "<cmd>Gitsigns stage_buffer<cr>", desc = "Git: Stage Buffer" },
+      { "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Git: Preview Hunk" },
+      { "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "Git: Preview Hunk Inline" },
+      { "<leader>hv", "<cmd>Gitsigns select_hunk<cr>", desc = "Git: Select Hunk" },
+    },
+    config = function()
+      local gitsigns = require("gitsigns")
+      gitsigns.toggle_current_line_blame(true)
+    end,
   },
 }

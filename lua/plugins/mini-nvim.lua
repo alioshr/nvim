@@ -33,11 +33,6 @@ return {
     require("mini.pairs").setup()
     require("mini.bracketed").setup()
     require("mini.indentscope").setup()
-    require("mini.diff").setup({
-      view = {
-        style = "sign",
-      },
-    })
     require("mini.move").setup({
       mappings = {
         left = "∆", -- alt + h

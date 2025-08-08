@@ -31,7 +31,7 @@ return {
         disable_insert_on_commit = true,
         integrations = {
           diffview = true,
-          snacks = true,
+          telescope = true,
         },
       })
     end,

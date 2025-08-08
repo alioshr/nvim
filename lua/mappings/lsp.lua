@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.diagnostic.open_float({
         scope = "line",
         border = "rounded",
-        source = "always",
+        source = true,
       })
     end, { buffer = ev.buf, desc = "Show line diagnostics" })
   end,

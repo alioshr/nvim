@@ -3,6 +3,9 @@
 -- Navigate to the previous buffer
 vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "Open file explorer" })
 
+-- Save the current buffer
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save current buffer" })
+
 -- Escape insert mode
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode with jj" })
 vim.keymap.set("i", "dd", "<Esc>", { desc = "Escape insert mode with dd" })

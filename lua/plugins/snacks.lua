@@ -32,6 +32,12 @@ return {
       enabled = true,
       layout = {
         preset = "sidebar",
+        backdrop = { bg = "Normal" },
+      },
+      win = {
+        input = { fixbuf = false },
+        list = { fixbuf = false },
+        preview = { fixbuf = false },
       },
       include = {
         "node_modules",

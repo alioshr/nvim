@@ -28,6 +28,30 @@ return {
 
     local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local builtin = require("telescope.builtin")
+    local action_state = require("telescope.actions.state")
+
+    vim.keymap.set("n", "<leader>,", function()
+      builtin.buffers({
+        initial_mode = "normal",
+        attach_mappings = function(prompt_bufnr, map)
+          local delete_buf = function()
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
+            current_picker:delete_selection(function(selection)
+              vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+            end)
+          end
+
+          map("n", "d", delete_buf)
+
+          return true
+        end,
+      }, {
+        sort_lastused = true,
+        sort_mru = true,
+        theme = "dropdown",
+      })
+    end)
 
     telescope.setup({
       defaults = {
@@ -112,7 +136,7 @@ return {
     { "<leader>sD", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Buffer Diagnostics" },
 
     -- Vim
-    { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    -- { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },

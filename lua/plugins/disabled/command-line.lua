@@ -1,7 +1,9 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  opts = {},
+  opts = {
+    enabled = false,
+  },
   dependencies = {
     "MunifTanjim/nui.nvim",
     {
@@ -26,5 +28,18 @@ return {
       inc_rename = false,
       lsp_doc_border = false,
     },
+    config = function()
+      require("lualine").setup({
+        sections = {
+          lualine_x = {
+            {
+              require("noice").api.statusline.mode.get,
+              cond = require("noice").api.statusline.mode.has,
+              color = { fg = "#ff9e64" },
+            },
+          },
+        },
+      })
+    end,
   },
 }

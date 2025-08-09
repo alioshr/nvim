@@ -48,6 +48,7 @@ return {
       { "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Git: Preview Hunk" },
       { "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "Git: Preview Hunk Inline" },
       { "<leader>hv", "<cmd>Gitsigns select_hunk<cr>", desc = "Git: Select Hunk" },
+      { "<leader>hb", "<cmd> Gitsigns blame<cr>", desc = "Git: Show file blame" },
     },
     config = function()
       local gitsigns = require("gitsigns")

@@ -45,3 +45,6 @@ vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", { desc = "Decrease sp
 vim.keymap.set("n", "<A-Down>", ":resize +2<CR>", { desc = "Increase split height" })
 vim.keymap.set("n", "<A-Up>", ":resize -2<CR>", { desc = "Decrease split height" })
 vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", { desc = "Increase split width" })
+
+-- Acess registers
+vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers" })

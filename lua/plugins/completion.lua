@@ -15,7 +15,7 @@ return {
   },
   opts = {
     keymap = {
-      ["<cr>"] = { "accept", "fallback" },
+      ["<tab>"] = { "accept", "fallback" },
       ["<C><leader>"] = { "show" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     },
@@ -62,3 +62,11 @@ return {
     fuzzy = { implementation = "lua" },
   },
 }
+
+-- yaaaa
+-- yaaaa
+-- yaaaa
+-- yaaaa
+-- yaaaa
+-- yaaaa
+-- yaaaa

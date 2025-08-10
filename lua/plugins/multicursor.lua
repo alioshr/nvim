@@ -10,35 +10,41 @@ return {
     -- Add or skip cursor above/below the main cursor.
     set({ "n", "x" }, "<up>", function()
       mc.lineAddCursor(-1)
-    end)
+    end, { desc = "Multicursor: add cursor above" })
+
     set({ "n", "x" }, "<down>", function()
       mc.lineAddCursor(1)
-    end)
+    end, { desc = "Multicursor: add cursor below" })
+
     set({ "n", "x" }, "<leader><up>", function()
       mc.lineSkipCursor(-1)
-    end)
+    end, { desc = "Multicursor: skip cursor above" })
+
     set({ "n", "x" }, "<leader><down>", function()
       mc.lineSkipCursor(1)
-    end)
+    end, { desc = "Multicursor: skip cursor below" })
 
     -- Add or skip adding a new cursor by matching word/selection
     set({ "n", "x" }, "<leader>n", function()
       mc.matchAddCursor(1)
-    end)
-    set({ "n", "x" }, "<leader>s", function()
-      mc.matchSkipCursor(1)
-    end)
+    end, { desc = "Multicursor: add match cursor forward" })
+
     set({ "n", "x" }, "<leader>N", function()
       mc.matchAddCursor(-1)
-    end)
+    end, { desc = "Multicursor: add match cursor backward" })
+
+    set({ "n", "x" }, "<leader>s", function()
+      mc.matchSkipCursor(1)
+    end, { desc = "Multicursor: skip match forward" })
+
     set({ "n", "x" }, "<leader>S", function()
       mc.matchSkipCursor(-1)
-    end)
+    end, { desc = "Multicursor: skip match backward" })
 
     -- Add and remove cursors with control + left click.
-    set("n", "<c-leftmouse>", mc.handleMouse)
-    set("n", "<c-leftdrag>", mc.handleMouseDrag)
-    set("n", "<c-leftrelease>", mc.handleMouseRelease)
+    set("n", "<c-leftmouse>", mc.handleMouse, { desc = "Multicursor: add/remove cursor with mouse" })
+    set("n", "<c-leftdrag>", mc.handleMouseDrag, { desc = "Multicursor: add/remove cursor with mouse drag" })
+    set("n", "<c-leftrelease>", mc.handleMouseRelease, { desc = "Multicursor: add/remove cursor with mouse" })
 
     -- Disable and enable cursors.
     set({ "n", "x" }, "<c-q>", mc.toggleCursor)

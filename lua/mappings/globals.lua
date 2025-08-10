@@ -14,7 +14,6 @@ end, { desc = "Save current buffer" })
 
 -- Escape insert mode
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode with jj" })
-vim.keymap.set("i", "dd", "<Esc>", { desc = "Escape insert mode with dd" })
 
 -- Clear search highlight
 vim.keymap.set("n", "<leader>us", ":noh<CR>", { desc = "Clear search highlight" })

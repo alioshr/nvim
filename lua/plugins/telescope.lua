@@ -136,7 +136,6 @@ return {
     { "<leader>sD", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Buffer Diagnostics" },
 
     -- Vim
-    -- { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },

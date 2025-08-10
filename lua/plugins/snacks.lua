@@ -32,6 +32,9 @@ return {
       enabled = true,
       replace_netrw = true,
     },
+    picker = {
+      include = { "node_modules", ".*" },
+    },
   },
   keys = {
     {

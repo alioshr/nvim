@@ -16,7 +16,6 @@ return {
   opts = {
     keymap = {
       ["<tab>"] = { "accept", "fallback" },
-      ["<C><leader>"] = { "show" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     },
     completion = {

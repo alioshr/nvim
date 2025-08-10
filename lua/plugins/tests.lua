@@ -9,10 +9,10 @@ return {
     "nvim-neotest/neotest-jest",
   },
   keys = {
-    { "<leader>tr", "<cmd>Neotest run<cr>", desc = "Run tests" },
-    { "<leader>ti", "<cmd>Neotest output<cr>", desc = "Show test output" },
-    { "<leader>ts", "<cmd>Neotest summary<cr>", desc = "Show test summary" },
-    { "<leader>ta", '<cmd>lua require("neotest").run.run({ suite = true })<cr>', desc = "Run all tests" },
+    { "<leader>tr", "<cmd>Neotest run<cr>", desc = "Tests: Run" },
+    { "<leader>ti", "<cmd>Neotest output<cr>", desc = "Tests: Show output" },
+    { "<leader>ts", "<cmd>Neotest summary<cr>", desc = "Tests: Show summary" },
+    { "<leader>ta", '<cmd>lua require("neotest").run.run({ suite = true })<cr>', desc = "Tests: Run all" },
     {
       "<leader>tU",
       function()
@@ -55,7 +55,7 @@ return {
           print("Not a test file")
         end
       end,
-      desc = "Run current test file with update snapshots",
+      desc = "Tests: Run current file with update snapshots",
     },
   },
   config = function()

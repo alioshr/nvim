@@ -29,18 +29,6 @@ return {
             end,
           },
         },
-        format_on_save = function()
-          -- Don't format if currently in undo/redo state
-          local fn = vim.fn
-          if fn.undotree().seq_cur ~= fn.undotree().seq_last then
-            return
-          end
-
-          return {
-            timeout_ms = 500,
-            lsp_fallback = true,
-          }
-        end,
         default_format_opts = {
           lsp_fallback = true,
         },

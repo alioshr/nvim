@@ -89,6 +89,18 @@ return {
           },
         },
       },
+      pickers = {
+        live_grep = {
+          additional_args = function()
+            return { "--ignore-case", "--fixed-strings" }
+          end,
+        },
+        grep_string = {
+          additional_args = function()
+            return { "--ignore-case", "--fixed-strings" }
+          end,
+        },
+      },
     })
 
     -- Load extensions

@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, { buffer = ev.buf, desc = "Format with ESLint and conform" })
 
     -- open the diagnostic window under the cursor in a flat window
-    vim.keymap.set("n", "<leader>d", function()
+    vim.keymap.set("n", "<leader>df", function()
       vim.diagnostic.open_float({
         scope = "line",
         border = "rounded",

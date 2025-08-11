@@ -25,7 +25,6 @@ return {
         update_delay_ms = 50,
       },
       menu = {
-        auto_show = true,
         draw = {
           treesitter = { "lsp" },
           columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
@@ -42,7 +41,6 @@ return {
       enabled = true,
       trigger = {
         enabled = true,
-        show_on_insert = true,
         show_on_keyword = true,
       },
     },

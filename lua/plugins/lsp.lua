@@ -31,7 +31,6 @@ return {
           on_attach = function(client)
             -- Disable the LSP's formatting capabilities to prevent conflicts with conform.nvim
             client.server_capabilities.documentFormattingProvider = false
-            -- require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
           end,
           settings = {
             typescript = {

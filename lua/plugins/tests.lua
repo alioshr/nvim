@@ -6,7 +6,8 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
     "marilari88/neotest-vitest",
-    "nvim-neotest/neotest-jest",
+    -- Jest is not working: https://github.com/nvim-neotest/neotest-jest/issues/99
+    -- "nvim-neotest/neotest-jest",
   },
   keys = {
     { "<leader>tr", "<cmd>Neotest run<cr>", desc = "Tests: Run" },
@@ -62,14 +63,16 @@ return {
     require("neotest").setup({
       adapters = {
         require("neotest-vitest"),
-        require("neotest-jest")({
-          jestCommand = "npm test --",
-          jestConfigFile = "custom.jest.config.ts",
-          env = { CI = true },
-          cwd = function(_)
-            return vim.fn.getcwd()
-          end,
-        }),
+        -- Jest is not working: https://github.com/nvim-neotest/neotest-jest/issues/99
+        -- require("neotest-jest")({
+        --   jestCommand = "npm test --",
+        --   jestConfigFile = "custom.jest.config.ts",
+        --   jest_test_discovery = true,
+        --   env = { CI = true },
+        --   cwd = function(path)
+        --     return vim.fn.getcwd()
+        --   end,
+        -- }),
       },
       discovery = {
         enabled = false,

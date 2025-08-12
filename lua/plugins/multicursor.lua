@@ -1,6 +1,19 @@
 return {
   "jake-stewart/multicursor.nvim",
+  lazy = true,
   branch = "1.0",
+  keys = {
+    {
+      "<leader>mc",
+      function()
+        local mc = require("multicursor-nvim")
+        vim.schedule(function()
+          mc.toggleCursor()
+        end)
+      end,
+      desc = "Multicursor: Toggle Cursor",
+    },
+  },
   config = function()
     local mc = require("multicursor-nvim")
     mc.setup()

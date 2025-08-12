@@ -1,11 +1,11 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-tree/nvim-web-devicons",
+      { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
     },
     config = function()
       local function filenameFirst(_, path)
@@ -84,9 +84,25 @@ return {
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["<C-l>"] = actions.cycle_previewers_next,
               ["<C-h>"] = actions.cycle_previewers_prev,
+              ["<ScrollWheelUp>"] = function(prompt_bufnr)
+                actions.move_selection_previous(prompt_bufnr)
+              end,
+              ["<ScrollWheelDown>"] = function(prompt_bufnr)
+                actions.move_selection_next(prompt_bufnr)
+              end,
+              ["<ScrollWheelLeft>"] = actions.results_scrolling_left,
+              ["<ScrollWheelRight>"] = actions.results_scrolling_right,
             },
             n = {
               ["q"] = actions.close,
+              ["<ScrollWheelUp>"] = function(prompt_bufnr)
+                actions.move_selection_previous(prompt_bufnr)
+              end,
+              ["<ScrollWheelDown>"] = function(prompt_bufnr)
+                actions.move_selection_next(prompt_bufnr)
+              end,
+              ["<ScrollWheelLeft>"] = actions.results_scrolling_left,
+              ["<ScrollWheelRight>"] = actions.results_scrolling_right,
             },
           },
         },
@@ -102,10 +118,20 @@ return {
             end,
           },
         },
+        extensions = {
+          live_grep_args = {
+            auto_quoting = true,
+            -- Don't add --fixed-strings here to allow glob patterns
+            additional_args = function()
+              return { "--ignore-case" }
+            end,
+          },
+        },
       })
 
       -- Load extensions
       telescope.load_extension("fzf")
+      telescope.load_extension("live_grep_args")
     end,
     keys = {
       -- Files
@@ -121,8 +147,16 @@ return {
       },
 
       -- Search
-      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-      { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep (Fixed Strings)" },
+      {
+        "<leader>sg",
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args({
+            default_text = '"<t>" --glob=**/*',
+          })
+        end,
+        desc = "Live Grep with Path Filter",
+      },
       { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Grep Word" },
       { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer Lines" },
 

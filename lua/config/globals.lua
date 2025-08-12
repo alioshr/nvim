@@ -9,5 +9,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
+-- Enable mouse support
+vim.opt.mouse = "a"
+
 -- local leader
 vim.g.maplocalleader = "\\"

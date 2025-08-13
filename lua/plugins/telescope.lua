@@ -152,7 +152,7 @@ return {
         "<leader>sg",
         function()
           require("telescope").extensions.live_grep_args.live_grep_args({
-            default_text = '"<t>" --glob=**/*',
+            default_text = '"t" --glob=**/*',
           })
         end,
         desc = "Live Grep with Path Filter",

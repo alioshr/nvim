@@ -20,7 +20,6 @@ return {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "folke/snacks.nvim",
     },
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Git: Open panel" },
@@ -30,9 +29,20 @@ return {
       require("neogit").setup({
         disable_commit_confirmation = true,
         disable_insert_on_commit = true,
+        remember_settings = true,
         integrations = {
           diffview = true,
           telescope = true,
+        },
+        builders = {
+          NeogitCommitPopup = function(popup)
+            local override = require("scripts.override-neogit-flag")
+            override.enableAndPersist(popup, { "no-verify" })
+          end,
+          NeogitPushPopup = function(popup)
+            local override = require("scripts.override-neogit-flag")
+            override.enableAndPersist(popup, { "force" })
+          end,
         },
       })
     end,

@@ -65,3 +65,20 @@ vim.keymap.set("n", "U", function()
     )
   )
 end, { desc = "Trigger tmux floating terminal (default session)" })
+
+-- Surround stuff easily
+vim.keymap.set("v", "qq", 'c""<esc>P')
+vim.keymap.set("v", "sq", "c''<esc>P")
+vim.keymap.set("v", "qw", "c``<esc>P")
+vim.keymap.set("v", "[[", "c[]<esc>P")
+vim.keymap.set("v", "(", "c()<esc>P")
+vim.keymap.set("v", "{", "c{}<esc>P")
+
+-- Solving the italian fucked up keyboard
+vim.keymap.set("i", "]", "+", { desc = "Insert key remap: Plus" })
+vim.keymap.set("i", "è", "{", { desc = "Insert key remap: Open curly brackets" })
+vim.keymap.set("i", "+", "}", { desc = "Insert key remap: Close curly brackets" })
+vim.keymap.set("i", "à", "[", { desc = "Insert key remap: Open brackets" })
+vim.keymap.set("i", "ù", "]", { desc = "Insert key remap: Close brackets" })
+vim.keymap.set("i", "ì", "=", { desc = "Insert key remap: Equals sign" })
+vim.keymap.set("i", "ò", "@", { desc = "Insert key remap: Open brackets" })

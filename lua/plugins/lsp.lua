@@ -65,13 +65,20 @@ return {
       require("mason").setup()
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "eslint", "ts_ls" },
+        ensure_installed = {},
+        automatic_installation = false,
+        automatic_setup = false,
+        automatic_enable = false,
+        handlers = nil,
       })
 
       require("mason-tool-installer").setup({
         ensure_installed = {
           "stylua",
           "prettier",
+          "lua_ls",
+          "eslint",
+          "ts_ls",
         },
       })
 

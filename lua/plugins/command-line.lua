@@ -1,11 +1,14 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  opts = {
-    enabled = false,
-  },
+  enabled = true,
+  opts = {},
   dependencies = {
-    "MunifTanjim/nui.nvim",
+    -- https://github.com/folke/noice.nvim/issues/1082
+    {
+      "MunifTanjim/nui.nvim",
+      commit = "8d3bce9764e627b62b07424e0df77f680d47ffdb",
+    },
     {
       "rcarriga/nvim-notify",
       opts = {
@@ -14,32 +17,13 @@ return {
         render = "minimal",
       },
     },
-    lsp = {
-      override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
-      },
-    },
+    lsp = {},
     presets = {
       bottom_search = true,
       command_palette = true,
       long_message_to_split = true,
       inc_rename = false,
-      lsp_doc_border = false,
+      lsp_doc_border = true,
     },
-    config = function()
-      require("lualine").setup({
-        sections = {
-          lualine_x = {
-            {
-              require("noice").api.statusline.mode.get,
-              cond = require("noice").api.statusline.mode.has,
-              color = { fg = "#ff9e64" },
-            },
-          },
-        },
-      })
-    end,
   },
 }

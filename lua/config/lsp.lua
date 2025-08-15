@@ -1,16 +1,3 @@
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = false,
-  underline = true,
-  update_in_insert = true,
-  float = {
-    border = "rounded",
-    source = true,
-    header = "",
-    prefix = "",
-  },
-})
-
 -- Configure diagnostics underline styles for error, warning and info
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "#E06C75" })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "#E5C07B" })

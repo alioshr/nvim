@@ -54,7 +54,7 @@ vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", { desc = "Increase s
 -- Acess registers
 vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers" })
 
--- Tmux floating terminal (default session)
+-- Tmux floating terminal (default session) TODO: Make this a script in the future
 vim.keymap.set("n", "U", function()
   local cwd = vim.fn.getcwd()
   vim.fn.system(

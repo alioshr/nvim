@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     -- vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc" -- Enable completion
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Show hover information" })
+    vim.keymap.set("n", "<leader><space>", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Show hover information" })
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename symbol" })
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code actions" })
 

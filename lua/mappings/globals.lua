@@ -78,6 +78,14 @@ vim.keymap.set("v", "{", "c{}<esc>P")
 vim.keymap.set("n", "J", "5j", { desc = "Jump 5 lines down" })
 vim.keymap.set("n", "K", "5k", { desc = "Jump 5 lines up" })
 
+-- Black hole delete mappings (d/dd go to black hole, D/DD go to register)
+vim.keymap.set("n", "d", '"_d', { desc = "Delete to black hole register" })
+vim.keymap.set("n", "dd", '"_dd', { desc = "Delete line to black hole register" })
+vim.keymap.set("v", "d", '"_d', { desc = "Delete selection to black hole register" })
+vim.keymap.set("n", "D", "d", { desc = "Delete to register (capital D)" })
+vim.keymap.set("n", "DD", "dd", { desc = "Delete line to register (capital DD)" })
+vim.keymap.set("v", "D", "d", { desc = "Delete selection to register (capital D)" })
+
 -- Solving the italian fucked up keyboard
 vim.keymap.set("i", "]", "+", { desc = "Insert key remap: Plus" })
 vim.keymap.set("i", "è", "{", { desc = "Insert key remap: Open curly brackets" })

@@ -54,17 +54,9 @@ vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", { desc = "Increase s
 -- Acess registers
 vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers" })
 
--- Tmux floating terminal (default session) TODO: Make this a script in the future
-vim.keymap.set("n", "U", function()
-  local cwd = vim.fn.getcwd()
-  vim.fn.system(
-    string.format(
-      'tmux display-popup -E -b single -S fg=colour7 -h 95%% -w 90%% -x 9%% -y 42%% -d "%s" "tmux new-session -A -s popup-float -c \\"%s\\" \\; bind-key -n C-q detach-client \\; bind-key -n C-d kill-session"',
-      cwd,
-      cwd
-    )
-  )
-end, { desc = "Trigger tmux floating terminal (default session)" })
+-- Tmux floating terminal (default session)
+local tmux = require("scripts.tmux")
+vim.keymap.set("n", "U", tmux.createFloatingTerminal, { desc = "Trigger tmux floating terminal (default session)" })
 
 -- Surround stuff easily
 vim.keymap.set("v", "qq", 'c""<esc>P')

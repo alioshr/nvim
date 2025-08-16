@@ -6,6 +6,9 @@
 ## Clibboard management
 - use the void black hole to delete without polluting the clipboard
 
+- operations with d/dd -> map to the black hole with noremap 
+- create keybindings for operations with D/DD -> save to the registry 
+
 ## Run tests
 - Ditch neotest 
 - Add a mapping to run 

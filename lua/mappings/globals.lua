@@ -74,6 +74,10 @@ vim.keymap.set("v", "[[", "c[]<esc>P")
 vim.keymap.set("v", "(", "c()<esc>P")
 vim.keymap.set("v", "{", "c{}<esc>P")
 
+-- Jump 5 lines up and down
+vim.keymap.set("n", "J", "5j", { desc = "Jump 5 lines down" })
+vim.keymap.set("n", "K", "5k", { desc = "Jump 5 lines up" })
+
 -- Solving the italian fucked up keyboard
 vim.keymap.set("i", "]", "+", { desc = "Insert key remap: Plus" })
 vim.keymap.set("i", "è", "{", { desc = "Insert key remap: Open curly brackets" })

@@ -64,6 +64,7 @@ return {
     config = function(_, opts)
       require("mason").setup()
 
+      -- keep this all disabled to avoid duplicate lsp clients from running https://www.youtube.com/watch?v=p2hNnoMeI4o
       require("mason-lspconfig").setup({
         ensure_installed = {},
         automatic_installation = false,

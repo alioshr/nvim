@@ -58,6 +58,8 @@ return {
           },
         },
         eslint = {},
+        taplo = {},
+        yamlls = {},
         tailwindcss = {},
       },
     },
@@ -76,6 +78,7 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = {
           "stylua",
+          "taplo",
           "prettier",
           "lua_ls",
           "eslint",

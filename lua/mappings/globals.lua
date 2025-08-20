@@ -78,7 +78,7 @@ vim.keymap.set("n", "D", "d", { desc = "Delete to register (capital D)" })
 vim.keymap.set("n", "DD", "dd", { desc = "Delete line to register (capital DD)" })
 vim.keymap.set("v", "D", "d", { desc = "Delete selection to register (capital D)" })
 
--- Solving the italian fucked up keyboard
+-- Solving the italian keyboard
 vim.keymap.set("i", "]", "+", { desc = "Insert key remap: Plus" })
 vim.keymap.set("i", "è", "{", { desc = "Insert key remap: Open curly brackets" })
 vim.keymap.set("i", "+", "}", { desc = "Insert key remap: Close curly brackets" })

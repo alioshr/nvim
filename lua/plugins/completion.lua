@@ -20,6 +20,11 @@ return {
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
     },
     completion = {
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
       documentation = {
         auto_show = true,
         window = {

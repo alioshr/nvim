@@ -13,7 +13,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 
 -- local leader
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 
 -- Add rounded borders to windows
 vim.o.winborder = "rounded"

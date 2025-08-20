@@ -36,8 +36,8 @@ vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit all buffers" })
 vim.keymap.set("n", "<leader>so", ":so %<CR>", { desc = "Source current file" })
 
 -- Split creation
-vim.keymap.set("n", "<localleader>ss", ":split<CR>", { desc = "Horizontal split" })
-vim.keymap.set("n", "<localleader>sv", ":vsplit<CR>", { desc = "Vertical split" })
+vim.keymap.set("n", "SH", ":split<CR>", { desc = "Horizontal split" })
+vim.keymap.set("n", "SV", ":vsplit<CR>", { desc = "Vertical split" })
 
 -- Split navigation
 vim.keymap.set("n", "<localleader>h", "<C-w>h", { desc = "Move to left split" })

@@ -12,6 +12,8 @@ return {
           typescriptreact = { "prettier" },
           json = { "prettier" },
           graphql = { "prettier" },
+          yaml = { "prettier" },
+          yml = { "prettier" },
         },
         formatters = {
           stylua = {
@@ -19,13 +21,17 @@ return {
             prepend_args = { "--config-path", vim.fn.expand("~/.config/nvim/.stylua.toml") },
           },
           prettier = {
-            require_cwd = true,
-            -- Ensure it finds your project's prettier config
-            condition = function(ctx)
-              return vim.fs.find(
+            command = vim.fn.expand("~/.local/share/nvim/mason/bin/prettier"),
+            -- Use project config if available, fallback to global config
+            prepend_args = function(ctx)
+              local project_config = vim.fs.find(
                 { ".prettierrc", ".prettierrc.json", ".prettierrc.js", "prettier.config.js" },
                 { path = ctx.filename, upward = true }
               )[1]
+              if not project_config then
+                return { "--config", vim.fn.expand("~/.config/nvim/.prettierrc") }
+              end
+              return {}
             end,
           },
         },

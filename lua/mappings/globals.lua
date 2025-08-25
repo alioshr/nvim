@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>c", ":bd<CR>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>C", ":bd!<CR>", { desc = "Force close current buffer" })
 
 -- Close neovim
-vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
+vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Quit Neovim" })
 vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit all buffers" })
 
 --Source

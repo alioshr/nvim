@@ -8,6 +8,11 @@ return {
   opts = {
     provider = "copilot",
     popup_type = "popup",
+    providers = {
+      copilot = {
+        model_id = "claude-sonnet-4",
+      },
+    },
   },
   keys = {
     {
@@ -16,7 +21,7 @@ return {
       function()
         require("wtf").diagnose()
       end,
-      desc = "Debug diagnostic with AI",
+      desc = "Wtf Diagnostics: Debug diagnostic with AI",
     },
     {
       "<leader>wf",
@@ -24,7 +29,7 @@ return {
       function()
         require("wtf").fix()
       end,
-      desc = "Fix diagnostic with AI",
+      desc = "Wtf Diagnostics: Fix diagnostic with AI",
     },
     {
       mode = { "n" },
@@ -32,7 +37,7 @@ return {
       function()
         require("wtf").search()
       end,
-      desc = "Search diagnostic with Google",
+      desc = "Wtf Diagnostics: Search diagnostic with Google",
     },
     {
       mode = { "n" },
@@ -40,7 +45,7 @@ return {
       function()
         require("wtf").pick_provider()
       end,
-      desc = "Pick provider",
+      desc = "Wtf Diagnostics: Pick provider",
     },
     {
       mode = { "n" },
@@ -48,7 +53,7 @@ return {
       function()
         require("wtf").history()
       end,
-      desc = "Populate the quickfix list with previous chat history",
+      desc = "Wtf Diagnostics: Populate the quickfix list with previous chat history",
     },
     {
       mode = { "n" },
@@ -56,7 +61,7 @@ return {
       function()
         require("wtf").grep_history()
       end,
-      desc = "Grep previous chat history with Telescope",
+      desc = "Wtf Diagnostics: Grep previous chat history with Telescope",
     },
   },
 }

@@ -75,4 +75,3 @@ M.runCracoTest = function()
 end
 
 return M
-

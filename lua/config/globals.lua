@@ -23,3 +23,5 @@ vim.opt.tabstop = 2 -- Visual width of tab character
 vim.opt.shiftwidth = 2 -- Indent size for << >> commands
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Tab key inserts this many spaces
+
+vim.o.termguicolors = true

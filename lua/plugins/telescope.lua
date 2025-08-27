@@ -198,15 +198,4 @@ return {
       { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorschemes" },
     },
   },
-  {
-    "nvim-telescope/telescope-project.nvim",
-    config = function()
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>fp",
-        ":lua require'telescope'.extensions.project.project{}<CR>",
-        { noremap = true, silent = true }
-      )
-    end,
-  },
 }

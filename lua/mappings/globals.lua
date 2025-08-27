@@ -92,12 +92,3 @@ vim.keymap.set("n", "S", "s", { desc = "Substitute character to register (capita
 vim.keymap.set("n", "c", '"_c', { desc = "Change to black hole register" })
 vim.keymap.set("v", "c", '"_c', { desc = "Change selection to black hole register" })
 vim.keymap.set("n", "C", "c", { desc = "Change to register (capital C)" })
-
--- Solving the italian keyboard
-vim.keymap.set("i", "]", "+", { desc = "Insert key remap: Plus" })
-vim.keymap.set("i", "è", "{", { desc = "Insert key remap: Open curly brackets" })
-vim.keymap.set("i", "+", "}", { desc = "Insert key remap: Close curly brackets" })
-vim.keymap.set("i", "à", "[", { desc = "Insert key remap: Open brackets" })
-vim.keymap.set("i", "ù", "]", { desc = "Insert key remap: Close brackets" })
-vim.keymap.set("i", "ì", "=", { desc = "Insert key remap: Equals sign" })
-vim.keymap.set("i", "ò", "@", { desc = "Insert key remap: Open brackets" })

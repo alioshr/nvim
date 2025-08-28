@@ -67,28 +67,23 @@ vim.keymap.set("v", "(", "c()<esc>P")
 vim.keymap.set("v", "{", "c{}<esc>P")
 
 -- Jump 5 lines up and down
-vim.keymap.set("n", "J", "5j", { desc = "Jump 5 lines down" })
-vim.keymap.set("n", "K", "5k", { desc = "Jump 5 lines up" })
+vim.keymap.set({ "n", "v" }, "J", "5j", { desc = "Jump 5 lines down" })
+vim.keymap.set({ "n", "v" }, "K", "5k", { desc = "Jump 5 lines up" })
 
 -- Black hole delete mappings
-vim.keymap.set("n", "d", '"_d', { desc = "Delete to black hole register" })
+vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete to black hole register" })
+vim.keymap.set({ "n", "v" }, "D", "d", { desc = "Delete to register (capital D)" })
 vim.keymap.set("n", "dd", '"_dd', { desc = "Delete line to black hole register" })
-vim.keymap.set("v", "d", '"_d', { desc = "Delete selection to black hole register" })
-vim.keymap.set("n", "D", "d", { desc = "Delete to register (capital D)" })
 vim.keymap.set("n", "DD", "dd", { desc = "Delete line to register (capital DD)" })
-vim.keymap.set("v", "D", "d", { desc = "Delete selection to register (capital D)" })
 
 -- Black hole character delete mappings
-vim.keymap.set("n", "x", '"_x', { desc = "Delete character to black hole register" })
-vim.keymap.set("v", "x", '"_x', { desc = "Delete selection to black hole register" })
+vim.keymap.set({ "n", "v" }, "x", '"_x', { desc = "Delete character to black hole register" })
 vim.keymap.set("n", "X", "x", { desc = "Delete character to register (capital X)" })
 
 -- Black hole substitute mappings
-vim.keymap.set("n", "s", '"_s', { desc = "Substitute character to black hole register" })
-vim.keymap.set("v", "s", '"_s', { desc = "Substitute selection to black hole register" })
+vim.keymap.set({ "n", "v" }, "s", '"_s', { desc = "Substitute to black hole register" })
 vim.keymap.set("n", "S", "s", { desc = "Substitute character to register (capital S)" })
 
 -- Black hole change mappings
-vim.keymap.set("n", "c", '"_c', { desc = "Change to black hole register" })
-vim.keymap.set("v", "c", '"_c', { desc = "Change selection to black hole register" })
+vim.keymap.set({ "n", "v" }, "c", '"_c', { desc = "Change to black hole register" })
 vim.keymap.set("n", "C", "c", { desc = "Change to register (capital C)" })

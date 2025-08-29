@@ -273,9 +273,9 @@ return {
       dapui.close()
     end
 
-    vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-    vim.keymap.set("n", "<Leader>dbc", dap.clear_breakpoints, { desc = "Clear all breakpoints" })
-    vim.keymap.set("n", "<Leader>dbl", dap.list_breakpoints, { desc = "Clear all breakpoints" })
+    vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Debbuger: Toggle breakpoint" })
+    vim.keymap.set("n", "<Leader>dbc", dap.clear_breakpoints, { desc = "Debbuger: Clear all breakpoints" })
+    vim.keymap.set("n", "<Leader>dbl", dap.list_breakpoints, { desc = "Debbuger: Clear all breakpoints" })
 
     local continue = function()
       -- support for vscode launch.json is partial.
@@ -286,6 +286,6 @@ return {
       dap.continue()
     end
 
-    vim.keymap.set("n", "<Leader>dc", continue, { desc = "Continue" })
+    vim.keymap.set("n", "<Leader>dc", continue, { desc = "Debbuger: Continue/Launch" })
   end,
 }

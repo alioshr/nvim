@@ -45,16 +45,7 @@ return {
     },
     fuzzy = { implementation = "prefer_rust" },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "copilot" },
-      providers = {
-        copilot = {
-          name = "copilot",
-          module = "blink-cmp-copilot",
-          score_offset = 100,
-          async = true,
-          transform_items = copilot_utils.transform_copilot_items,
-        },
-      },
+      default = { "lsp", "path", "snippets", "buffer" },
     },
   },
 }

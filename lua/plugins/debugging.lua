@@ -5,7 +5,9 @@ return {
     "nvim-neotest/nvim-nio",
   },
   config = function()
+    ---@module 'dap'
     local dap = require("dap")
+    ---@module 'dapui'ª
     local dapui = require("dapui")
 
     dap.defaults.fallback.exception_breakpoints = { "uncaught" }
@@ -274,19 +276,19 @@ return {
     end
 
     vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Debbuger: Toggle breakpoint" })
+    vim.keymap.set("n", "<Leader>dB", function()
+      local condition = vim.fn.input("Breakpoint condition (optional): ")
+      local hit_condition = vim.fn.input("Hit count (optional): ")
+
+      -- Convert empty strings to nil
+      condition = condition ~= "" and condition or nil
+      hit_condition = hit_condition ~= "" and hit_condition or nil
+
+      require("dap").toggle_breakpoint(condition, hit_condition)
+    end, { desc = "Debbuger: Set conditional breakpoint" })
     vim.keymap.set("n", "<Leader>dbc", dap.clear_breakpoints, { desc = "Debbuger: Clear all breakpoints" })
     vim.keymap.set("n", "<Leader>dbl", dap.list_breakpoints, { desc = "Debbuger: Clear all breakpoints" })
     vim.keymap.set("n", "<Leader>do", dapui.toggle, { desc = "Debbuger: Toggle DAP UI" })
-
-    local continue = function()
-      -- support for vscode launch.json is partial.
-      -- not all configuration options and features supported
-      if vim.fn.filereadable(".vscode/launch.json") then
-        require("dap.ext.vscode").load_launchjs()
-      end
-      dap.continue()
-    end
-
-    vim.keymap.set("n", "<Leader>dc", continue, { desc = "Debbuger: Continue/Launch" })
+    vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Debbuger: Continue/Launch" })
   end,
 }

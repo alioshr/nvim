@@ -60,6 +60,7 @@ return {
         eslint = {},
         taplo = {},
         yamlls = {},
+        jsonls = {},
         tailwindcss = {},
       },
     },

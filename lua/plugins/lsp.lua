@@ -57,7 +57,14 @@ return {
             },
           },
         },
-        eslint = {},
+        eslint = {
+          on_init = function(client)
+            local eslint_fix = require("scripts.eslintFixAll")
+            vim.api.nvim_create_user_command("EslintFixAll", function()
+              eslint_fix.fix_all({ client = client, sync = true })
+            end, { desc = "Fix all eslint problems for this buffer" })
+          end,
+        },
         taplo = {},
         yamlls = {},
         jsonls = {},
@@ -87,11 +94,13 @@ return {
         },
       })
 
-      -- set and run lsp servers
-      local lspconfig = require("lspconfig")
+      -- set and run lsp servers using new vim.lsp.config API
       for server, config in pairs(opts.servers) do
-        lspconfig[server].setup(config)
+        vim.lsp.config(server, config)
       end
+
+      -- enable all configured servers
+      vim.lsp.enable(vim.tbl_keys(opts.servers))
     end,
   },
 }

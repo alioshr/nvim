@@ -54,6 +54,10 @@ vim.keymap.set("n", "<A-Right>", ":vertical resize +2<CR>", { desc = "Increase s
 -- Acess registers
 vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers" })
 
+-- Quickfix list operations
+local quickFixList = require("scripts.quick-fix-list")
+vim.keymap.set("n", "<leader>qr", quickFixList.replaceInQuickFixList, { desc = "Replace in quickfix list" })
+
 -- Tmux floating terminal (default session)
 local tmux = require("scripts.tmux")
 vim.keymap.set("n", "U", tmux.createFloatingTerminal, { desc = "Trigger tmux floating terminal (default session)" })

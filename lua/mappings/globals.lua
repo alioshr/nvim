@@ -56,7 +56,7 @@ vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers
 
 -- Quickfix list operations
 local quickFixList = require("scripts.quick-fix-list")
-vim.keymap.set("n", "<leader>qr", quickFixList.replaceInQuickFixList, { desc = "Replace in quickfix list" })
+vim.keymap.set("n", "<leader>rq", quickFixList.replaceInQuickFixList, { desc = "Replace in quickfix list" })
 
 -- Tmux floating terminal (default session)
 local tmux = require("scripts.tmux")

@@ -12,6 +12,7 @@ return {
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#8a92b3" })
       vim.api.nvim_set_hl(0, "@variable.unused", { fg = "#8a92b3" })
       vim.api.nvim_set_hl(0, "@parameter.unused", { fg = "#8a92b3" })
+      -- vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
@@ -58,16 +59,10 @@ return {
       vim.cmd.colorscheme("kanagawa")
 
       -- Force cursor colors after colorscheme loads
-      vim.api.nvim_set_hl(0, "Cursor", { fg = "#DCD7BA", bg = "#bd9dd4" }) -- RGB(239, 223, 245)
+      vim.api.nvim_set_hl(0, "Cursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
       vim.api.nvim_set_hl(0, "lCursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
       vim.api.nvim_set_hl(0, "CursorIM", { fg = "#DCD7BA", bg = "#bd9dd4" })
       vim.api.nvim_set_hl(0, "TermCursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
-
-      -- Set terminal cursor color (for terminal emulators that support it)
-      -- n-v-c: normal/visual/command mode = block cursor
-      -- i-ci-ve: insert mode = vertical bar at 50% width (thicker)
-      -- r-cr: replace mode = horizontal bar at 20% height
-      vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver50-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
     end,
   },
 }

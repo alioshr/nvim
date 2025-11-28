@@ -1,4 +1,5 @@
 local copilot_utils = require("scripts.copilot-utils")
+
 return {
   "saghen/blink.cmp",
   build = "cargo build --release",

@@ -1,7 +1,6 @@
 return {
   "folke/sidekick.nvim",
   opts = {
-    -- add any options here
     cli = {
       mux = {
         backend = "tmux",
@@ -21,15 +20,6 @@ return {
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
     },
-    -- Not sure what this is for, commenting out for now
-    -- {
-    --   "<c>",
-    --   function()
-    --     require("sidekick.cli").toggle()
-    --   end,
-    --   desc = "Sidekick Toggle",
-    --   mode = { "n", "t", "i", "x" },
-    -- },
     {
       "<leader>aa",
       function()
@@ -83,14 +73,6 @@ return {
       end,
       mode = { "n", "x" },
       desc = "Sidekick Select Prompt",
-    },
-    -- Example of a keybinding to open Claude directly
-    {
-      "<leader>ac",
-      function()
-        require("sidekick.cli").toggle({ name = "claude", focus = true })
-      end,
-      desc = "Sidekick Toggle Claude",
     },
   },
 }

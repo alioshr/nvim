@@ -24,7 +24,7 @@ local function set_dap_colors()
   end
 
   vim.api.nvim_set_hl(0, "DapStopped", { fg = "#e3be44", bg = sign_column_bg, ctermbg = sign_column_ctermbg })
-  vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#53553b", ctermbg = "Green" })
+  vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#e2f1bc", ctermbg = "Green" })
   vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#c23127", bg = sign_column_bg, ctermbg = sign_column_ctermbg })
   vim.api.nvim_set_hl(
     0,

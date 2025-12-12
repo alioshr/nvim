@@ -5,7 +5,7 @@ M.createFloatingTerminal = function()
   local cwd = vim.fn.getcwd()
   vim.fn.system(
     string.format(
-      'tmux display-popup -E -b single -S fg=colour7 -h 95%% -w 90%% -x 9%% -y 44%% -d "%s" "tmux new-session -A -s popup-float -c \\"%s\\" \\; bind-key -n C-q detach-client \\; bind-key -n C-d kill-session"',
+      'tmux display-popup -E -b single -s fg=#545464,bg=#f2ecbc -S fg=colour7,bg=#f2ecbc -h 100%% -w 100%% -x 0 -y 0 -d "%s" "tmux new-session -A -s popup-float -c \\"%s\\" \\; bind-key -n C-q detach-client \\; bind-key -n C-d kill-session"',
       cwd,
       cwd
     )

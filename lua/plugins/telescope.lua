@@ -110,14 +110,20 @@ return {
           },
         },
         pickers = {
+          find_files = {
+            hidden = true,
+          },
+          git_files = {
+            show_untracked = true,
+          },
           live_grep = {
             additional_args = function()
-              return { "--ignore-case", "--fixed-strings" }
+              return { "--ignore-case", "--fixed-strings", "--hidden", "--glob=!**/.git/*" }
             end,
           },
           grep_string = {
             additional_args = function()
-              return { "--ignore-case", "--fixed-strings" }
+              return { "--ignore-case", "--fixed-strings", "--hidden", "--glob=!**/.git/*" }
             end,
           },
         },
@@ -126,7 +132,7 @@ return {
             auto_quoting = true,
             -- Don't add --fixed-strings here to allow glob patterns
             additional_args = function()
-              return { "--ignore-case" }
+              return { "--ignore-case", "--hidden", "--glob=!**/.git/*" }
             end,
           },
         },

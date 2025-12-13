@@ -35,34 +35,11 @@ return {
           palette = {},
           theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
         },
-        overrides = function(colors) -- add/modify highlights
-          local theme = colors.theme
-          return {
-            -- Cursor colors for better visibility (dark cursor on light background)
-            Cursor = { fg = "#DCD7BA", bg = "#2D4F67" }, -- Dark blue-grey
-            lCursor = { fg = "#DCD7BA", bg = "#2D4F67" },
-            CursorIM = { fg = "#DCD7BA", bg = "#2D4F67" },
-            TermCursor = { fg = "#DCD7BA", bg = "#2D4F67" },
-            -- Alternative dark colors:
-            -- Cursor = { fg = "#DCD7BA", bg = "#1F1F28" }, -- Very dark grey
-            -- Cursor = { fg = "#DCD7BA", bg = "#43242B" }, -- Dark red
-          }
-        end,
-        theme = "dragon", -- Load "wave" theme
-        background = { -- map the value of 'background' option to a theme
-          dark = "lotus", -- try "dragon" !
-          light = "lotus",
-        },
+        theme = "lotus",
       })
 
       -- setup must be called before loading
       vim.cmd.colorscheme("kanagawa")
-
-      -- Force cursor colors after colorscheme loads
-      vim.api.nvim_set_hl(0, "Cursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
-      vim.api.nvim_set_hl(0, "lCursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
-      vim.api.nvim_set_hl(0, "CursorIM", { fg = "#DCD7BA", bg = "#bd9dd4" })
-      vim.api.nvim_set_hl(0, "TermCursor", { fg = "#DCD7BA", bg = "#bd9dd4" })
     end,
   },
 }

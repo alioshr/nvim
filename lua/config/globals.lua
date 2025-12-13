@@ -25,3 +25,6 @@ vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Tab key inserts this many spaces
 
 vim.o.termguicolors = true
+
+-- theme
+vim.o.background = "light"

@@ -57,6 +57,9 @@ return {
       telescope.setup({
         defaults = {
           path_display = filenameFirst,
+          file_ignore_patterns = {
+            "node_modules/",
+          },
           cache_picker = {
             num_pickers = 100,
             limit_entries = 1000,
@@ -118,12 +121,24 @@ return {
           },
           live_grep = {
             additional_args = function()
-              return { "--ignore-case", "--fixed-strings", "--hidden", "--glob=!**/.git/*" }
+              return {
+                "--ignore-case",
+                "--fixed-strings",
+                "--hidden",
+                "--glob=!**/.git/**",
+                "--glob=!**/node_modules/**",
+              }
             end,
           },
           grep_string = {
             additional_args = function()
-              return { "--ignore-case", "--fixed-strings", "--hidden", "--glob=!**/.git/*" }
+              return {
+                "--ignore-case",
+                "--fixed-strings",
+                "--hidden",
+                "--glob=!**/.git/**",
+                "--glob=!**/node_modules/**",
+              }
             end,
           },
         },
@@ -132,7 +147,7 @@ return {
             auto_quoting = true,
             -- Don't add --fixed-strings here to allow glob patterns
             additional_args = function()
-              return { "--ignore-case", "--hidden", "--glob=!**/.git/*" }
+              return { "--ignore-case", "--hidden", "--glob=!**/.git/**", "--glob=!**/node_modules/**" }
             end,
           },
         },

@@ -214,12 +214,45 @@ return {
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
       { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-      { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
       { "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Location List" },
       { "<leader>sj", "<cmd>Telescope jumplist<cr>", desc = "Jump List" },
       { '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>s/", "<cmd>Telescope search_history<cr>", desc = "Search History" },
       { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorschemes" },
+      { "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
+      {
+        "<leader>sQ",
+        function()
+          local qf_items = vim.fn.getqflist()
+          local seen = {}
+          local paths = {}
+
+          for _, item in ipairs(qf_items) do
+            local bufnr = item.bufnr
+            if bufnr and bufnr > 0 then
+              local name = vim.api.nvim_buf_get_name(bufnr)
+              if name ~= "" and not seen[name] then
+                seen[name] = true
+                table.insert(paths, name)
+              end
+            elseif item.filename and item.filename ~= "" and not seen[item.filename] then
+              seen[item.filename] = true
+              table.insert(paths, item.filename)
+            end
+          end
+
+          if #paths == 0 then
+            vim.notify("Quickfix list has no file entries", vim.log.levels.WARN)
+            return
+          end
+
+          require("telescope").extensions.live_grep_args.live_grep_args({
+            prompt_title = string.format("Live Grep (Quickfix Files: %d)", #paths),
+            search_dirs = paths,
+          })
+        end,
+        desc = "Grep in Quickfix Files",
+      },
     },
   },
 }

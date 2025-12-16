@@ -57,9 +57,6 @@ return {
       telescope.setup({
         defaults = {
           path_display = filenameFirst,
-          file_ignore_patterns = {
-            "node_modules/",
-          },
           cache_picker = {
             num_pickers = 100,
             limit_entries = 1000,

@@ -1,4 +1,5 @@
 local tmux = require("scripts.tmux")
+local utils = require("scripts.utils")
 
 local M = {}
 
@@ -21,22 +22,10 @@ local testStrategies = {
   },
 }
 
--- Helper function to get the current file name without extension
-local function getCurrentFileName()
-  local fullPath = vim.fn.expand("%:p")
-  local fileName = vim.fn.fnamemodify(fullPath, ":t:r")
-  return fileName
-end
-
--- Helper function to get the current file path relative to cwd
-local function getCurrentFilePath()
-  return vim.fn.expand("%:.")
-end
-
 -- Generic test runner function
 local function runTest(strategy)
-  local filePath = getCurrentFilePath()
-  local fileName = getCurrentFileName()
+  local filePath = utils.get_current_file_path()
+  local fileName = utils.get_current_file_name()
 
   if not filePath or filePath == "" then
     print("No file is currently open")

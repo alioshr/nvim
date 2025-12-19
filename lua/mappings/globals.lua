@@ -19,10 +19,15 @@ vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape insert mode with jj" })
 vim.keymap.set("n", "<leader>us", ":noh<CR>", { desc = "Clear search highlight" })
 
 -- Copy the path of the current buffer
-vim.keymap.set("n", "<leader>cp", ":let @+=expand('%:p')<CR>", { desc = "Copy the path of the current buffer" })
+local utils = require("scripts.utils")
+vim.keymap.set("n", "<leader>cp", function()
+  vim.fn.setreg("+", utils.get_current_file_abs_path())
+end, { desc = "Copy the path of the current buffer" })
 
 -- Copy the project root path
-vim.keymap.set("n", "<leader>cr", ":let @+=getcwd()<CR>", { desc = "Copy the project root path" })
+vim.keymap.set("n", "<leader>cr", function()
+  vim.fn.setreg("+", utils.get_cwd_path())
+end, { desc = "Copy the project root path" })
 
 -- Close a buffer
 vim.keymap.set("n", "<leader>c", ":bd<CR>", { desc = "Close current buffer" })

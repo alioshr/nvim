@@ -3,10 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local function get_dir_name()
-        local cwd = vim.fn.getcwd()
-        return vim.fn.fnamemodify(cwd, ":t")
-      end
+      local utils = require("scripts.utils")
 
       require("lualine").setup({
         options = {
@@ -15,7 +12,7 @@ return {
         sections = {
           lualine_a = {
             {
-              get_dir_name,
+              utils.get_cwd_basename,
               icon = "",
               color = { gui = "bold" },
             },

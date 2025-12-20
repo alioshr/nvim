@@ -10,6 +10,7 @@ return {
   build = ":TSUpdate",
   config = function()
     local ts = require("nvim-treesitter")
+    local parsers = require("nvim-treesitter.parsers")
 
     -- Install core parsers at startup
     ts.install({
@@ -68,6 +69,29 @@ return {
         end
 
         local lang = vim.treesitter.language.get_lang(event.match) or event.match
+        local supported = false
+
+        if not lang then
+          return
+        end
+
+        if parsers.get_parser_configs then
+          local parser_configs = parsers.get_parser_configs()
+          supported = parser_configs[lang] ~= nil
+        elseif parsers.available_parsers then
+          for _, parser in ipairs(parsers.available_parsers()) do
+            if parser == lang then
+              supported = true
+              break
+            end
+          end
+        else
+          supported = true
+        end
+
+        if not supported then
+          return
+        end
         local buf = event.buf
 
         -- Start highlighting immediately (works if parser exists)
@@ -77,7 +101,13 @@ return {
         vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
         -- Install missing parsers (async, no-op if already installed)
-        ts.install({ lang })
+        if parsers.has_parser then
+          if not parsers.has_parser(lang) then
+            ts.install({ lang })
+          end
+        else
+          ts.install({ lang })
+        end
       end,
     })
   end,

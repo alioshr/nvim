@@ -88,9 +88,9 @@ return {
           "stylua",
           "taplo",
           "prettier",
-          "lua_ls",
-          "eslint",
-          "ts_ls",
+          "lua-language-server",
+          "eslint-lsp",
+          "typescript-language-server",
         },
       })
 

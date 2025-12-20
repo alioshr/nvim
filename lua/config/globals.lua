@@ -28,3 +28,17 @@ vim.o.termguicolors = true
 
 -- theme
 vim.o.background = "light"
+
+local function set_pmenu_highlights()
+  vim.api.nvim_set_hl(0, "Pmenu", { link = "NormalFloat" })
+  vim.api.nvim_set_hl(0, "PmenuSel", { link = "Visual" })
+  vim.api.nvim_set_hl(0, "PmenuKind", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "PmenuExtra", { link = "Pmenu" })
+end
+
+set_pmenu_highlights()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("PmenuHighlights", { clear = true }),
+  callback = set_pmenu_highlights,
+})

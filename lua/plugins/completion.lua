@@ -2,17 +2,16 @@ return {
   "saghen/blink.cmp",
   build = "cargo build --release",
   dependencies = {
-    version = "v2.*",
     "rafamadriz/friendly-snippets",
     "giuxtaposition/blink-cmp-copilot",
   },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
-  appearance = {
-    nerd_font_variant = "mono",
-    highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
-  },
   opts = {
+    appearance = {
+      nerd_font_variant = "mono",
+      highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+    },
     keymap = {
       ["<cr>"] = { "accept", "fallback" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -56,4 +55,22 @@ return {
       default = { "lsp", "path", "snippets", "buffer" },
     },
   },
+  config = function(_, opts)
+    require("blink.cmp").setup(opts)
+
+    local function set_blink_highlights()
+      vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "Pmenu" })
+      vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { link = "PmenuSel" })
+      vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "NormalFloat" })
+      vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "FloatBorder" })
+    end
+
+    set_blink_highlights()
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("BlinkCmpHighlights", { clear = true }),
+      callback = set_blink_highlights,
+    })
+  end,
 }

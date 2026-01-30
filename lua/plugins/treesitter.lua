@@ -32,7 +32,6 @@ return {
       "make",
       "markdown",
       "markdown_inline",
-      "norg",
       "python",
       "query",
       "regex",
@@ -51,12 +50,41 @@ return {
     local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 
     local ignore_filetypes = {
+      -- Neovim built-in
       "checkhealth",
+      -- Lazy.nvim
       "lazy",
+      -- Mason
       "mason",
+      -- Snacks
       "snacks_dashboard",
       "snacks_notif",
       "snacks_win",
+      -- Noice/Notify
+      "noice",
+      "notify",
+      -- Blink.cmp
+      "blink-cmp-menu",
+      "blink-cmp-documentation",
+      "blink-cmp-signature",
+      -- Neogit
+      "NeogitStatus",
+      "NeogitPopup",
+      "NeogitDiffView",
+      "NeogitCommitMessage",
+      "NeogitLogView",
+      "NeogitReflogView",
+      "NeogitGitCommandHistory",
+      -- Telescope
+      "TelescopePrompt",
+      "TelescopeResults",
+      "TelescopePreview",
+      -- Other common UI filetypes
+      "qf",
+      "help",
+      "man",
+      "lspinfo",
+      "null-ls-info",
     }
 
     -- Auto-install parsers and enable highlighting on FileType

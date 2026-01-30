@@ -56,7 +56,7 @@ return {
     telescope.setup({
       defaults = {
         path_display = filenameFirst,
-        file_ignore_patterns = { "%.git/", "node_modules/" },
+        file_ignore_patterns = { "%.git/" },
         cache_picker = {
           num_pickers = 100,
           limit_entries = 1000,
@@ -159,13 +159,14 @@ return {
     })
 
     -- Load extensions
-    telescope.load_extension("fzf")
+    -- telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("frecency")
   end,
   keys = {
-      -- Files
-      { "<leader>ff", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Find Files (Frecency)" },
+    -- Files
+    { "<leader>fF", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "Find Files (Frecency)" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Git Files" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
     {

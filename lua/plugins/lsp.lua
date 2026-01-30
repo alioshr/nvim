@@ -68,7 +68,6 @@ return {
         taplo = {},
         yamlls = {},
         jsonls = {},
-        tailwindcss = {},
       },
     },
     config = function(_, opts)

@@ -9,7 +9,7 @@ return {
       replace_netrw = true,
     },
     picker = {
-      include = { "node_modules", ".*" },
+      include = { "node_modules", "pdfs", ".*" },
       enabled = false,
     },
   },

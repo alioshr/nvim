@@ -1,15 +1,12 @@
 local M = {}
 
--- Factory function to create tmux floating terminal
+-- Switch to popup-float session (create if needed), with Ctrl+Q to switch back
 M.createFloatingTerminal = function()
   local cwd = vim.fn.getcwd()
-  vim.fn.system(
-    string.format(
-      'tmux display-popup -E -b single -s fg=#545464,bg=#f2ecbc -S fg=colour7,bg=#f2ecbc -h 100%% -w 100%% -x 0 -y 0 -d "%s" "tmux new-session -A -s popup-float -c \\"%s\\" \\; bind-key -n C-q detach-client \\; bind-key -n C-d kill-session"',
-      cwd,
-      cwd
-    )
-  )
+  -- Create session if it doesn't exist
+  vim.fn.system(string.format('tmux has-session -t popup-float 2>/dev/null || tmux new-session -d -s popup-float -c "%s"', cwd))
+  -- Switch to popup-float session
+  vim.fn.system("tmux switch-client -t popup-float")
 end
 
 -- Factory function to create window name from window name and file name

@@ -20,6 +20,11 @@ local testStrategies = {
     suffix = "--watch",
     windowName = "Craco",
   },
+  bun = {
+    prefix = "bun test",
+    suffix = "--watch",
+    windowName = "Bun",
+  },
 }
 
 -- Generic test runner function
@@ -61,6 +66,10 @@ end
 
 M.runCracoTest = function()
   runTest("craco")
+end
+
+M.runBunTest = function()
+  runTest("bun")
 end
 
 return M

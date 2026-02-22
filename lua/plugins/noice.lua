@@ -59,6 +59,19 @@ return {
   config = function(_, opts)
     require("noice").setup(opts)
     local function set_noice_highlights()
+      local function clear_bg(group)
+        local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = true })
+        if ok and not vim.tbl_isempty(hl) then
+          hl.bg = nil
+          hl.ctermbg = nil
+          hl.link = nil
+          hl.default = nil
+          vim.api.nvim_set_hl(0, group, hl)
+        else
+          vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+        end
+      end
+
       -- Force Noice border groups to use FloatBorder, which already has transparent bg.
       vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { link = "FloatBorder" })
       vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { link = "FloatBorder" })
@@ -74,9 +87,13 @@ return {
       -- Existing confirm action formatting.
       vim.api.nvim_set_hl(0, "NoiceFormatConfirm", { bg = "NONE", bold = true })
       vim.api.nvim_set_hl(0, "NoiceFormatConfirmDefault", { bg = "NONE", bold = true, underline = true })
+
+      -- Keep the progress fill, but remove the static "todo" track background.
+      clear_bg("NoiceFormatProgressTodo")
     end
 
-    set_noice_highlights()
+    -- Noice initializes on a deferred callback; re-apply once it has set defaults.
+    vim.schedule(set_noice_highlights)
     vim.api.nvim_create_autocmd("ColorScheme", {
       group = vim.api.nvim_create_augroup("NoiceTransparentHighlights", { clear = true }),
       callback = set_noice_highlights,

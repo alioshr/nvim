@@ -26,6 +26,11 @@ vim.opt.softtabstop = 2 -- Tab key inserts this many spaces
 
 vim.o.termguicolors = true
 
+-- Remove empty command-line row (Noice handles cmdline via popups)
+vim.opt.cmdheight = 0
+vim.opt.showmode = false
+vim.opt.laststatus = 3
+
 -- theme
 vim.o.background = "light"
 

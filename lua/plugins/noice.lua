@@ -12,20 +12,15 @@ return {
       },
     },
     cmdline = {
-      opts = {
-        border = {
-          text = false,
-        },
-      },
       format = {
-        cmdline = { pattern = "^:", icon = "", lang = "vim", title = "" },
-        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", title = "" },
-        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex", title = "" },
-        filter = { pattern = "^:%s*!", icon = "$", lang = "bash", title = "" },
-        lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua", title = "" },
-        help = { pattern = "^:%s*he?l?p?%s+", icon = "", title = "" },
-        calculator = { pattern = "^=", icon = "", lang = "vimnormal", title = "" },
-        input = { view = "cmdline_popup", icon = "󰥻 ", title = "" },
+        cmdline = { pattern = "^:", icon = "", lang = "vim", title = " Command " },
+        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", title = " Search " },
+        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex", title = " Search " },
+        filter = { pattern = "^:%s*!", icon = "$", lang = "bash", title = " Shell " },
+        lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua", title = " Lua " },
+        help = { pattern = "^:%s*he?l?p?%s+", icon = "", title = " Help " },
+        calculator = { pattern = "^=", icon = "", lang = "vimnormal", title = " Calc " },
+        input = { view = "cmdline_popup", icon = "󰥻 ", title = " Input " },
       },
     },
     views = {

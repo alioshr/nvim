@@ -32,6 +32,21 @@ return {
       vim.api.nvim_set_hl(0, "FoldColumn", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8a8980", bg = "NONE" })
+      local function clear_sign_bg(group, fallback_link)
+        local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
+        if ok and not vim.tbl_isempty(hl) then
+          hl.bg = nil
+          hl.ctermbg = nil
+          vim.api.nvim_set_hl(0, group, hl)
+        else
+          vim.api.nvim_set_hl(0, group, { link = fallback_link })
+        end
+      end
+      clear_sign_bg("DiagnosticSignError", "DiagnosticError")
+      clear_sign_bg("DiagnosticSignWarn", "DiagnosticWarn")
+      clear_sign_bg("DiagnosticSignInfo", "DiagnosticInfo")
+      clear_sign_bg("DiagnosticSignHint", "DiagnosticHint")
+      clear_sign_bg("DiagnosticSignOk", "DiagnosticOk")
       vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })

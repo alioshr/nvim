@@ -60,7 +60,7 @@ return {
 
                 return filename .. modified .. "  %#lualine_c_inactive#" .. display_dir
               end,
-              color = { fg = "#545464", gui = "bold", bg = "NONE" },
+              color = { fg = "#4e8ca2", gui = "bold", bg = "NONE" },
             },
           },
           lualine_b = { "branch", "diff", "diagnostics" },

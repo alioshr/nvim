@@ -10,6 +10,14 @@ return {
     opts = function()
       local languages = require("config.languages")
       local server_filetypes = languages.lsp_filetypes_by_server()
+
+      if vim.fn.exists(":EslintFixAll") == 0 then
+        local eslint_fix = require("scripts.eslintFixAll")
+        vim.api.nvim_create_user_command("EslintFixAll", function()
+          eslint_fix.fix_all({ sync = true })
+        end, { desc = "Fix all eslint problems for this buffer" })
+      end
+
       local servers = {
         lua_ls = {
           settings = {
@@ -59,14 +67,7 @@ return {
             },
           },
         },
-        eslint = {
-          on_init = function(client)
-            local eslint_fix = require("scripts.eslintFixAll")
-            vim.api.nvim_create_user_command("EslintFixAll", function()
-              eslint_fix.fix_all({ client = client, sync = true })
-            end, { desc = "Fix all eslint problems for this buffer" })
-          end,
-        },
+        eslint = {},
         taplo = {},
         yamlls = {},
         jsonls = {},

@@ -1,8 +1,5 @@
 -- Global key mappings for Neovim
 
--- Navigate to the previous buffer
-vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "Open file explorer" })
-
 -- Save the current buffer and format
 local fixAndFormat = require("scripts.fixAndFormat").fixAndFormat
 
@@ -34,8 +31,13 @@ vim.keymap.set("n", "<leader>c", ":bd<CR>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>C", ":bd!<CR>", { desc = "Force close current buffer" })
 
 -- Close neovim
-vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Quit Neovim" })
+vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>Q", ":qa<CR>", { desc = "Quit all buffers" })
+
+-- Buffer navigation
+vim.keymap.set("n", "<leader>+", "<Cmd>bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>è", "<Cmd>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader><Tab>", "<C-^>", { desc = "Toggle last buffer" })
 
 --Source
 vim.keymap.set("n", "<leader>so", ":so %<CR>", { desc = "Source current file" })
@@ -62,6 +64,7 @@ vim.keymap.set("n", "<localleader>r", ":registers<CR>", { desc = "Show registers
 -- Quickfix list operations
 local quickFixList = require("scripts.quick-fix-list")
 vim.keymap.set("n", "<leader>rq", quickFixList.replaceInQuickFixList, { desc = "Replace in quickfix list" })
+vim.keymap.set("n", "<leader>rQ", quickFixList.replaceInQuickFixListBatch, { desc = "Replace in quickfix list (batch)" })
 
 -- Tmux floating terminal (default session)
 local tmux = require("scripts.tmux")

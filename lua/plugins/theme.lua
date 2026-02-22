@@ -50,8 +50,8 @@ return {
       vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "TreesitterContextBottom", { bg = "NONE", underline = true })
 
-      -- Noice cmdline underline separator
-      vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { bg = "NONE", underdouble = true, sp = "#8a8980" })
+      -- Noice cmdline popup body (no underline; border now provides separation)
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { bg = "NONE" })
 
       -- Never show tabline — override any plugin that tries to restore it
       vim.opt.showtabline = 0

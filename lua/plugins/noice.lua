@@ -12,6 +12,11 @@ return {
       },
     },
     cmdline = {
+      opts = {
+        border = {
+          text = false,
+        },
+      },
       format = {
         cmdline = { pattern = "^:", icon = "", lang = "vim", title = "" },
         search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", title = "" },
@@ -26,27 +31,56 @@ return {
     views = {
       cmdline_popup = {
         border = {
-          style = "none",
+          style = "rounded",
+          padding = { 0, 0 },
+        },
+      },
+      cmdline_input = {
+        border = {
+          style = "rounded",
+          padding = { 0, 0 },
         },
       },
       popupmenu = {
         border = {
-          style = "none",
+          style = "rounded",
+          padding = { 0, 0 },
         },
       },
       confirm = {
         border = {
-          style = "none",
+          style = "rounded",
+          padding = { 0, 0 },
+          text = false,
         },
       },
     },
   },
   config = function(_, opts)
     require("noice").setup(opts)
-    -- Override after noice sets highlights with default=true
-    vim.api.nvim_set_hl(0, "NoiceConfirm", { bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NoiceFormatConfirm", { bg = "NONE", bold = true })
-    vim.api.nvim_set_hl(0, "NoiceFormatConfirmDefault", { bg = "NONE", bold = true, underline = true })
+    local function set_noice_highlights()
+      -- Force Noice border groups to use FloatBorder, which already has transparent bg.
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "NoicePopupmenuBorder", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "NoiceConfirmBorder", { link = "FloatBorder" })
+      vim.api.nvim_set_hl(0, "NoicePopupBorder", { link = "FloatBorder" })
+
+      -- Keep popup body transparent.
+      vim.api.nvim_set_hl(0, "NoiceConfirm", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NoicePopupmenu", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NoicePopup", { bg = "NONE" })
+
+      -- Existing confirm action formatting.
+      vim.api.nvim_set_hl(0, "NoiceFormatConfirm", { bg = "NONE", bold = true })
+      vim.api.nvim_set_hl(0, "NoiceFormatConfirmDefault", { bg = "NONE", bold = true, underline = true })
+    end
+
+    set_noice_highlights()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("NoiceTransparentHighlights", { clear = true }),
+      callback = set_noice_highlights,
+    })
   end,
   dependencies = {
     {

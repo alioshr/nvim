@@ -7,8 +7,10 @@ return {
       "neovim/nvim-lspconfig",
       "artemave/workspace-diagnostics.nvim",
     },
-    opts = {
-      servers = {
+    opts = function()
+      local languages = require("config.languages")
+      local server_filetypes = languages.lsp_filetypes_by_server()
+      local servers = {
         lua_ls = {
           settings = {
             Lua = {
@@ -68,9 +70,36 @@ return {
         taplo = {},
         yamlls = {},
         jsonls = {},
-      },
-    },
+      }
+
+      for server, filetypes in pairs(server_filetypes) do
+        if servers[server] then
+          servers[server].filetypes = filetypes
+        end
+      end
+
+      return {
+        servers = servers,
+        mason_extra_tools = {
+          "stylua",
+          "prettier",
+        },
+        mason_lsp_packages = languages.mason_lsp_packages(),
+      }
+    end,
     config = function(_, opts)
+      local function uniq(list)
+        local seen = {}
+        local out = {}
+        for _, value in ipairs(list) do
+          if value and value ~= "" and not seen[value] then
+            seen[value] = true
+            out[#out + 1] = value
+          end
+        end
+        return out
+      end
+
       require("mason").setup()
 
       -- keep this all disabled to avoid duplicate lsp clients from running https://www.youtube.com/watch?v=p2hNnoMeI4o
@@ -83,14 +112,10 @@ return {
       })
 
       require("mason-tool-installer").setup({
-        ensure_installed = {
-          "stylua",
-          "taplo",
-          "prettier",
-          "lua-language-server",
-          "eslint-lsp",
-          "typescript-language-server",
-        },
+        ensure_installed = uniq(vim.list_extend(
+          vim.deepcopy(opts.mason_extra_tools or {}),
+          vim.deepcopy(opts.mason_lsp_packages or {})
+        )),
       })
 
       -- set and run lsp servers using new vim.lsp.config API

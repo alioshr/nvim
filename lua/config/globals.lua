@@ -29,6 +29,18 @@ vim.o.termguicolors = true
 -- theme
 vim.o.background = "light"
 
+-- Global fold UX defaults (works with treesitter foldexpr and others)
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldnestmax = 3
+vim.opt.foldminlines = 6
+vim.opt.fillchars:append({
+  foldopen = "-",
+  foldclose = "+",
+  foldsep = " ",
+  fold = " ",
+})
+
 local function set_pmenu_highlights()
   vim.api.nvim_set_hl(0, "Pmenu", { link = "NormalFloat" })
   vim.api.nvim_set_hl(0, "PmenuSel", { link = "Visual" })

@@ -9,132 +9,59 @@ return {
   branch = "main",
   build = ":TSUpdate",
   config = function()
+    local languages = require("config.languages")
     local ts = require("nvim-treesitter")
     local parsers = require("nvim-treesitter.parsers")
+    local core_parsers = languages.treesitter_parsers()
+    local fold_filetypes = languages.treesitter_fold_filetypes()
+    local parser_by_filetype = languages.treesitter_parser_by_filetype()
+
+    local function has_installed_parser(lang)
+      return pcall(vim.treesitter.language.inspect, lang)
+    end
 
     -- Install core parsers at startup
-    ts.install({
-      "bash",
-      "comment",
-      "css",
-      "diff",
-      "fish",
-      "git_config",
-      "git_rebase",
-      "gitcommit",
-      "gitignore",
-      "html",
-      "javascript",
-      "json",
-      "latex",
-      "lua",
-      "luadoc",
-      "make",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "query",
-      "regex",
-      "scss",
-      "svelte",
-      "toml",
-      "tsx",
-      "typescript",
-      "typst",
-      "vim",
-      "vimdoc",
-      "vue",
-      "xml",
-    })
+    ts.install(core_parsers)
 
     local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
 
-    local ignore_filetypes = {
-      -- Neovim built-in
-      "checkhealth",
-      -- Lazy.nvim
-      "lazy",
-      -- Mason
-      "mason",
-      -- Snacks
-      "snacks_dashboard",
-      "snacks_notif",
-      "snacks_win",
-      -- Noice/Notify
-      "noice",
-      "notify",
-      -- Blink.cmp
-      "blink-cmp-menu",
-      "blink-cmp-documentation",
-      "blink-cmp-signature",
-      -- Neogit
-      "NeogitStatus",
-      "NeogitPopup",
-      "NeogitDiffView",
-      "NeogitCommitMessage",
-      "NeogitLogView",
-      "NeogitReflogView",
-      "NeogitGitCommandHistory",
-      -- Telescope
-      "TelescopePrompt",
-      "TelescopeResults",
-      "TelescopePreview",
-      -- Other common UI filetypes
-      "qf",
-      "help",
-      "man",
-      "lspinfo",
-      "null-ls-info",
-    }
-
-    -- Auto-install parsers and enable highlighting on FileType
+    -- Enable treesitter features on supported, parser-backed filetypes.
     vim.api.nvim_create_autocmd("FileType", {
       group = group,
-      desc = "Enable treesitter highlighting and indentation",
+      desc = "Enable treesitter highlighting, indentation, and folds",
       callback = function(event)
-        if vim.tbl_contains(ignore_filetypes, event.match) then
-          return
-        end
-
-        local lang = vim.treesitter.language.get_lang(event.match) or event.match
-        local supported = false
-
-        if not lang then
-          return
-        end
-
-        if parsers.get_parser_configs then
-          local parser_configs = parsers.get_parser_configs()
-          supported = parser_configs[lang] ~= nil
-        elseif parsers.available_parsers then
-          for _, parser in ipairs(parsers.available_parsers()) do
-            if parser == lang then
-              supported = true
-              break
-            end
-          end
-        else
-          supported = true
-        end
-
-        if not supported then
-          return
-        end
         local buf = event.buf
+        local ft = event.match
 
-        -- Start highlighting immediately (works if parser exists)
+        if ft == "" or not vim.api.nvim_buf_is_valid(buf) then
+          return
+        end
+
+        if vim.bo[buf].buftype ~= "" then
+          return
+        end
+
+        local lang = parser_by_filetype[ft] or vim.treesitter.language.get_lang(ft) or ft
+
+        if type(lang) ~= "string" or lang == "" then
+          return
+        end
+
+        if not parsers[lang] then
+          return
+        end
+
+        if not has_installed_parser(lang) then
+          return
+        end
+
         pcall(vim.treesitter.start, buf, lang)
 
-        -- Enable treesitter indentation
         vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
-        -- Install missing parsers (async, no-op if already installed)
-        if parsers.has_parser then
-          if not parsers.has_parser(lang) then
-            ts.install({ lang })
-          end
-        else
-          ts.install({ lang })
+        if fold_filetypes[ft] and not vim.wo[0].diff then
+          vim.wo[0].foldmethod = "expr"
+          vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end
       end,
     })

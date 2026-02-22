@@ -79,6 +79,23 @@ vim.keymap.set("v", "{", "c{}<esc>P")
 vim.keymap.set({ "n", "v" }, "J", "5j", { desc = "Jump 5 lines down" })
 vim.keymap.set({ "n", "v" }, "K", "5k", { desc = "Jump 5 lines up" })
 
+-- Fold mappings (custom shortcuts + explicit defaults so they are discoverable in Telescope)
+vim.keymap.set("n", "<leader>zt", "<Cmd>normal! za<CR>", { desc = "Folds: Toggle fold under cursor" })
+vim.keymap.set("n", "<leader>zc", "<Cmd>normal! zc<CR>", { desc = "Folds: Close fold under cursor" })
+vim.keymap.set("n", "<leader>zo", "<Cmd>normal! zo<CR>", { desc = "Folds: Open fold under cursor" })
+vim.keymap.set("n", "<leader>zC", "<Cmd>normal! zM<CR>", { desc = "Folds: Close all folds in buffer" })
+vim.keymap.set("n", "<leader>zO", "<Cmd>normal! zR<CR>", { desc = "Folds: Open all folds in buffer" })
+
+vim.keymap.set("n", "za", "<Cmd>normal! za<CR>", { desc = "Folds: Toggle fold under cursor (default)" })
+vim.keymap.set("n", "zc", "<Cmd>normal! zc<CR>", { desc = "Folds: Close fold under cursor (default)" })
+vim.keymap.set("n", "zo", "<Cmd>normal! zo<CR>", { desc = "Folds: Open fold under cursor (default)" })
+vim.keymap.set("n", "zC", "<Cmd>normal! zC<CR>", { desc = "Folds: Close fold recursively (default)" })
+vim.keymap.set("n", "zO", "<Cmd>normal! zO<CR>", { desc = "Folds: Open fold recursively (default)" })
+vim.keymap.set("n", "zM", "<Cmd>normal! zM<CR>", { desc = "Folds: Close all folds in buffer (default)" })
+vim.keymap.set("n", "zR", "<Cmd>normal! zR<CR>", { desc = "Folds: Open all folds in buffer (default)" })
+vim.keymap.set("n", "zr", "<Cmd>normal! zr<CR>", { desc = "Folds: Reduce folding level (default)" })
+vim.keymap.set("n", "zm", "<Cmd>normal! zm<CR>", { desc = "Folds: Increase folding level (default)" })
+
 -- Black hole delete mappings
 vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete to black hole register" })
 vim.keymap.set({ "n", "v" }, "D", "d", { desc = "Delete to register (capital D)" })

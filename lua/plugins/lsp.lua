@@ -113,10 +113,9 @@ return {
       })
 
       require("mason-tool-installer").setup({
-        ensure_installed = uniq(vim.list_extend(
-          vim.deepcopy(opts.mason_extra_tools or {}),
-          vim.deepcopy(opts.mason_lsp_packages or {})
-        )),
+        ensure_installed = uniq(
+          vim.list_extend(vim.deepcopy(opts.mason_extra_tools or {}), vim.deepcopy(opts.mason_lsp_packages or {}))
+        ),
       })
 
       -- set and run lsp servers using new vim.lsp.config API

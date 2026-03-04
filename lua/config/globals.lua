@@ -30,6 +30,7 @@ vim.o.termguicolors = true
 vim.opt.cmdheight = 0
 vim.opt.showmode = false
 vim.opt.laststatus = 3
+vim.opt.showcmd = false
 
 -- theme
 vim.o.background = "light"

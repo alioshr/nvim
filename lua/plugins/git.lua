@@ -26,6 +26,14 @@ return {
       { "<leader>hd", "<cmd>DiffviewOpen<cr>", desc = "Git: Open 3 way conflict resolution" },
     },
     config = function()
+      -- Disable swap files for Neogit buffers to prevent E325 errors
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "Neogit*",
+        callback = function()
+          vim.opt_local.swapfile = false
+        end,
+      })
+
       require("neogit").setup({
         disable_commit_confirmation = true,
         disable_insert_on_commit = true,

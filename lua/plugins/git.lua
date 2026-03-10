@@ -76,6 +76,40 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("codediff").setup(opts)
+
+      -- Auto-preview diff on cursor move in explorer
+      local debounce_timer = nil
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "codediff-explorer",
+        callback = function(ev)
+          vim.api.nvim_create_autocmd("CursorMoved", {
+            buffer = ev.buf,
+            callback = function()
+              if debounce_timer then
+                debounce_timer:stop()
+              end
+              debounce_timer = vim.defer_fn(function()
+                if not vim.api.nvim_buf_is_valid(ev.buf) then
+                  return
+                end
+                local lifecycle = require("codediff.ui.lifecycle")
+                local tabpage = vim.api.nvim_get_current_tabpage()
+                local explorer = lifecycle.get_explorer(tabpage)
+                if not explorer or not explorer.tree then
+                  return
+                end
+                local node = explorer.tree:get_node()
+                if node and node.data and node.data.type ~= "group" and node.data.type ~= "directory" then
+                  explorer.on_file_select(node.data)
+                end
+              end, 150)
+            end,
+          })
+        end,
+      })
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

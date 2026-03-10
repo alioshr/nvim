@@ -1,7 +1,7 @@
 {
   "arrow.nvim": { "branch": "master", "commit": "6e0f726f55f99332dd726a53effd6813786b6d49" },
   "blink-cmp-copilot": { "branch": "main", "commit": "439cff78780c033aa23cf061d7315314b347e3c1" },
-  "blink.cmp": { "branch": "main", "commit": "e3523b949badd35ac8553bb975698f8d47b6debd" },
+  "blink.cmp": { "branch": "main", "commit": "8936aee785533553cb00b6a50f8c8a835ff46fdd" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "continue.nvim": { "branch": "main", "commit": "ca67b611f4b48cf121e6af7b45eccb0829917f72" },
   "copilot.vim": { "branch": "release", "commit": "a12fd5672110c8aa7e3c8419e28c96943ca179be" },

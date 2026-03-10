@@ -82,6 +82,10 @@ return {
         end,
       })
 
+      -- Selection highlight — neutral lavender that works with any light bg
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#e0d4e8" })
+      vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#e0d4e8" })
+
       -- Make Telescope transparent
       vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "NONE" })

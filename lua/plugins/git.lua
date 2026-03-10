@@ -38,10 +38,18 @@ return {
         disable_commit_confirmation = true,
         disable_insert_on_commit = true,
         remember_settings = true,
+        mappings = {
+          status = {
+            ["K"] = false,
+            ["<leader>K"] = "Untrack",
+          },
+        },
         integrations = {
           diffview = true,
+          codediff = true,
           telescope = true,
         },
+        diff_viewer = "codediff",
         builders = {
           NeogitCommitPopup = function(popup)
             local override = require("scripts.override-neogit-flag")
@@ -57,6 +65,17 @@ return {
   },
   {
     "sindrets/diffview.nvim",
+  },
+  {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    opts = {
+      keymaps = {
+        explorer = {
+          hover = "<leader>K",
+        },
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",

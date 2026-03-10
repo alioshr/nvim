@@ -82,6 +82,7 @@ vim.keymap.set("v", "{", "c{}<esc>P")
 vim.keymap.set({ "n", "v" }, "J", "5j", { desc = "Jump 5 lines down" })
 vim.keymap.set({ "n", "v" }, "K", "5k", { desc = "Jump 5 lines up" })
 
+
 -- Fold mappings (custom shortcuts + explicit defaults so they are discoverable in Telescope)
 vim.keymap.set("n", "<leader>zt", "<Cmd>normal! za<CR>", { desc = "Folds: Toggle fold under cursor" })
 vim.keymap.set("n", "<leader>zc", "<Cmd>normal! zc<CR>", { desc = "Folds: Close fold under cursor" })

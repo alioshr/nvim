@@ -45,6 +45,9 @@ return {
         explorer = {
           layout = {
             preset = "sidebar",
+            layout = {
+              width = 40,
+            },
             config = function(layout)
               if layout.layout and layout.layout[1] and layout.layout[1].win == "input" then
                 layout.layout[1].title = "{title}"

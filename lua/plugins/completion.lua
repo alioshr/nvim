@@ -1,10 +1,6 @@
 return {
   "saghen/blink.cmp",
   build = "cargo build --release",
-  dependencies = {
-    "rafamadriz/friendly-snippets",
-    "giuxtaposition/blink-cmp-copilot",
-  },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -16,13 +12,9 @@ return {
       ["<cr>"] = { "accept", "fallback" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<Tab>"] = {
-        "snippet_forward",
         function() -- sidekick next edit suggestion
           return require("sidekick").nes_jump_or_apply()
         end,
-        -- function() -- if you are using Neovim's native inline completions
-        --   return vim.lsp.inline_completion.get()
-        -- end,
         "fallback",
       },
     },
@@ -52,7 +44,7 @@ return {
     },
     fuzzy = { implementation = "prefer_rust" },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "buffer" },
     },
   },
   config = function(_, opts)

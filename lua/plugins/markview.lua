@@ -7,7 +7,7 @@ return {
     opts = {
       preview = {
         filetypes = { "markdown" },
-        ignore_buftypes = {},
+        ignore_buftypes = { "nofile" },
       },
     },
   },

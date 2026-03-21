@@ -79,6 +79,24 @@ return {
     config = function(_, opts)
       require("codediff").setup(opts)
 
+      -- Force wrap on codediff diff windows
+      vim.api.nvim_create_autocmd("OptionSet", {
+        pattern = "wrap",
+        callback = function()
+          local buf = vim.api.nvim_get_current_buf()
+          local ft = vim.bo[buf].filetype
+          if ft and ft:match("^codediff") and ft ~= "codediff-explorer" then
+            vim.schedule(function()
+              if vim.api.nvim_buf_is_valid(buf) then
+                for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+                  vim.wo[win].wrap = true
+                end
+              end
+            end)
+          end
+        end,
+      })
+
       -- Auto-preview diff on cursor move in explorer
       local debounce_timer = nil
       vim.api.nvim_create_autocmd("FileType", {

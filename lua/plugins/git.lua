@@ -47,7 +47,7 @@ return {
         integrations = {
           diffview = true,
           codediff = true,
-          telescope = true,
+          snacks = true,
         },
         diff_viewer = "codediff",
         builders = {

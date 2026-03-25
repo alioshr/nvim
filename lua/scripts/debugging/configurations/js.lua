@@ -48,11 +48,47 @@ local function browser_attach_configuration(debug_config)
   }
 end
 
+---@param debug_config table
+local function chrome_launch_configuration(debug_config)
+  return {
+    type = "pwa-chrome",
+    request = "launch",
+    name = "Launch Chrome (nvim-dap)",
+    url = function()
+      return prompt_url(debug_config.browsers.default_url)
+    end,
+    webRoot = "${workspaceFolder}",
+    sourceMaps = true,
+    smartStep = debug_config.browsers.smart_step,
+    skipFiles = debug_config.browsers.skip_files,
+    sourceMapPathOverrides = debug_config.browsers.source_map_path_overrides,
+    runtimeExecutable = debug_config.browsers.chrome_path,
+    userDataDir = debug_config.browsers.chrome_user_data_dir,
+  }
+end
+
+---@param debug_config table
+local function chrome_attach_configuration(debug_config)
+  return {
+    type = "pwa-chrome",
+    request = "attach",
+    name = "Attach Chrome (port " .. debug_config.browsers.attach_port .. ") (nvim-dap)",
+    port = debug_config.browsers.attach_port,
+    webRoot = "${workspaceFolder}",
+    sourceMaps = true,
+    smartStep = debug_config.browsers.smart_step,
+    skipFiles = debug_config.browsers.skip_files,
+    sourceMapPathOverrides = debug_config.browsers.source_map_path_overrides,
+  }
+end
+
 ---@param dap table
 ---@param debug_config table
 function M.setup(dap, debug_config)
   local browser_launch = browser_launch_configuration(debug_config)
   local browser_attach = browser_attach_configuration(debug_config)
+  local chrome_launch = chrome_launch_configuration(debug_config)
+  local chrome_attach = chrome_attach_configuration(debug_config)
 
   for _, filetype in ipairs(debug_config.filetypes) do
     dap.configurations[filetype] = {
@@ -80,6 +116,8 @@ function M.setup(dap, debug_config)
       },
       vim.deepcopy(browser_launch),
       vim.deepcopy(browser_attach),
+      vim.deepcopy(chrome_launch),
+      vim.deepcopy(chrome_attach),
     }
   end
 end

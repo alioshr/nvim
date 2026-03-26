@@ -58,13 +58,17 @@ return {
         },
         files = {
           hidden = true,
+          ignored = true,
+          exclude = { "node_modules" },
         },
         grep = {
           hidden = true,
+          ignored = true,
           args = { "--ignore-case", "--fixed-strings", "--sort=path", "--glob=!**/.git/**", "--glob=!**/node_modules/**" },
         },
         grep_word = {
           hidden = true,
+          ignored = true,
           args = { "--ignore-case", "--fixed-strings", "--sort=path", "--glob=!**/.git/**", "--glob=!**/node_modules/**" },
         },
       },
@@ -94,7 +98,7 @@ return {
   end,
   keys = {
     -- Explorer
-    { "<leader>e", function() Snacks.explorer({ hidden = true }) end, desc = "File Explorer" },
+    { "<leader>e", function() Snacks.explorer({ hidden = true, ignored = true }) end, desc = "File Explorer" },
 
     -- Files
     { "<leader>fF", function() Snacks.picker.recent() end, desc = "Find Files (Frecency)" },
@@ -114,6 +118,7 @@ return {
           end
           Snacks.picker.grep({
             hidden = true,
+            ignored = true,
             glob = glob,
             args = { "--ignore-case", "--sort=path", "--glob=!**/.git/**", "--glob=!**/node_modules/**" },
           })

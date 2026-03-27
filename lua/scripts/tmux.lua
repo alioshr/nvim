@@ -1,18 +1,24 @@
 local M = {}
 
-local function ensure_popup_float_session(cwd)
-  vim.fn.system({ "tmux", "has-session", "-t", "popup-float" })
-  if vim.v.shell_error ~= 0 then
-    vim.fn.system({ "tmux", "new-session", "-d", "-s", "popup-float", "-c", cwd })
-  end
+local function get_float_session_name()
+  local parent = vim.fn.system("tmux display-message -p '#S'"):gsub("%s+", "")
+  return parent .. "-float"
 end
 
--- Switch to popup-float session (create if needed), with Ctrl+Q to switch back
+local function ensure_popup_float_session(cwd)
+  local name = get_float_session_name()
+  vim.fn.system({ "tmux", "has-session", "-t", name })
+  if vim.v.shell_error ~= 0 then
+    vim.fn.system({ "tmux", "new-session", "-d", "-s", name, "-c", cwd })
+  end
+  return name
+end
+
+-- Switch to per-session float (create if needed), with Ctrl+Q to switch back
 M.createFloatingTerminal = function()
   local cwd = vim.fn.getcwd()
-  ensure_popup_float_session(cwd)
-  -- Switch to popup-float session
-  vim.fn.system({ "tmux", "switch-client", "-t", "popup-float" })
+  local name = ensure_popup_float_session(cwd)
+  vim.fn.system({ "tmux", "switch-client", "-t", name })
 end
 
 -- Factory function to create window name from window name and file name
@@ -31,7 +37,8 @@ end
 
 -- Create a tmux window with a specific name and run a command
 M.createWindowAndRunCommand = function(windowName, command)
-  vim.fn.system({ "tmux", "new-window", "-t", "popup-float", "-n", windowName, command })
+  local name = get_float_session_name()
+  vim.fn.system({ "tmux", "new-window", "-t", name, "-n", windowName, command })
 end
 
 -- Combined function: create floating terminal, then create window and run command

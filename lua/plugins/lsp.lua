@@ -71,6 +71,7 @@ return {
         taplo = {},
         yamlls = {},
         jsonls = {},
+        biome = {},
       }
 
       for server, filetypes in pairs(server_filetypes) do

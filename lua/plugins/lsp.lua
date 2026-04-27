@@ -72,6 +72,7 @@ return {
         yamlls = {},
         jsonls = {},
         biome = {},
+        oxlint = {},
       }
 
       for server, filetypes in pairs(server_filetypes) do
@@ -85,6 +86,9 @@ return {
         mason_extra_tools = {
           "stylua",
           "prettier",
+          "oxfmt",
+          "oxlint",
+          "biome",
         },
         mason_lsp_packages = languages.mason_lsp_packages(),
       }

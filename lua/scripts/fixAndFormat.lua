@@ -32,6 +32,18 @@ local LINTERS = {
       end
     end
   end,
+  oxlint = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local client = vim.lsp.get_clients({ bufnr = bufnr, name = "oxlint" })[1]
+    if not client then
+      return
+    end
+    client:exec_cmd({
+      title = "Apply Oxlint automatic fixes",
+      command = "oxc.fixAll",
+      arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+    }, { bufnr = bufnr })
+  end,
 }
 
 -- Runs client fixes, then formats the buffer using conform.nvim

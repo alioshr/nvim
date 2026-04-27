@@ -17,12 +17,16 @@ return {
         "prettier.config.mjs",
       }
       local biome_configs = { "biome.json", "biome.jsonc" }
+      local oxfmt_configs = { ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "oxfmt.config.js" }
 
-      --- Returns { "biome" }, { "prettier" }, or {} based on project config
+      --- Returns { "oxfmt" }, { "biome" }, { "prettier" }, or {} based on project config
       ---@param bufnr number
       ---@return string[]
       local function web_formatter(bufnr)
         local filepath = vim.api.nvim_buf_get_name(bufnr)
+        if vim.fs.find(oxfmt_configs, { path = filepath, upward = true })[1] then
+          return { "oxfmt" }
+        end
         if vim.fs.find(biome_configs, { path = filepath, upward = true })[1] then
           return { "biome" }
         end
@@ -64,6 +68,9 @@ return {
           },
           biome = {
             command = vim.fn.expand("~/.local/share/nvim/mason/bin/biome"),
+          },
+          oxfmt = {
+            command = vim.fn.expand("~/.local/share/nvim/mason/bin/oxfmt"),
           },
         },
         default_format_opts = {

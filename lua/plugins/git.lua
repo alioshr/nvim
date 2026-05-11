@@ -18,9 +18,6 @@ return {
   },
   {
     "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Git: Open panel" },
       { "<leader>hd", "<cmd>DiffviewOpen<cr>", desc = "Git: Open 3 way conflict resolution" },

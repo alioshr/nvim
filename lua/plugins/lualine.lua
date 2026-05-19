@@ -4,23 +4,13 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local utils = require("scripts.utils")
+      local theme = require("themes")
 
       require("lualine").setup({
         options = {
           section_separators = "",
           component_separators = "·",
-          theme = (function()
-            local kanagawa = require("lualine.themes.kanagawa")
-            for _, mode in pairs(kanagawa) do
-              for _, section in pairs(mode) do
-                if type(section) == "table" then
-                  section.bg = "NONE"
-                end
-              end
-            end
-            kanagawa.normal.a.fg = "#b35b79"
-            return kanagawa
-          end)(),
+          theme = theme.lualine_theme(),
         },
         sections = {
           lualine_a = {
@@ -60,7 +50,7 @@ return {
 
                 return filename .. modified .. "  %#lualine_c_inactive#" .. display_dir
               end,
-              color = { fg = "#4e8ca2", gui = "bold", bg = "NONE" },
+              color = { fg = theme.highlights.filename_fg, gui = "bold", bg = "NONE" },
             },
           },
           lualine_b = { "branch", "diff", "diagnostics" },

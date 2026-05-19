@@ -1,29 +1,11 @@
+local theme = require("themes")
+
 return {
-  {
-    "rebelot/kanagawa.nvim",
+  vim.tbl_extend("force", theme.plugin, {
     lazy = false,
     priority = 1000,
     config = function()
-      require("kanagawa").setup({
-        compile = false, -- enable compiling the colorscheme
-        undercurl = true, -- enable undercurls
-        commentStyle = { italic = true },
-        functionStyle = {},
-        keywordStyle = { italic = true },
-        statementStyle = { bold = true },
-        typeStyle = {},
-        transparent = true, -- allow terminal transparency to show through
-        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-        terminalColors = true, -- define vim.g.terminal_color_{0,17}
-        colors = { -- add/modify theme and palette colors
-          palette = {},
-          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-        },
-        theme = "lotus",
-      })
-
-      -- setup must be called before loading
-      vim.cmd.colorscheme("kanagawa")
+      theme.apply()
 
       -- Make gutter/sign column transparent
       vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
@@ -31,7 +13,7 @@ return {
       vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "FoldColumn", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8a8980", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { fg = theme.highlights.float_border, bg = "NONE" })
       local function clear_sign_bg(group, fallback_link)
         local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
         if ok and not vim.tbl_isempty(hl) then
@@ -65,7 +47,7 @@ return {
       vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "TreesitterContextBottom", { bg = "NONE", underline = true })
 
-      -- Noice cmdline popup body (no underline; border now provides separation)
+      -- Noice cmdline popup body
       vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { bg = "NONE" })
 
       -- Never show tabline — override any plugin that tries to restore it
@@ -82,9 +64,9 @@ return {
         end,
       })
 
-      -- Selection highlight — neutral lavender that works with any light bg
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#e0d4e8" })
-      vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#e0d4e8" })
+      -- Selection highlight
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = theme.highlights.cursorline })
+      vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = theme.highlights.cursorline })
 
       -- Make Telescope transparent
       vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
@@ -96,5 +78,5 @@ return {
       vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = "NONE" })
     end,
-  },
+  }),
 }

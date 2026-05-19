@@ -1,3 +1,48 @@
+-- Shared artifact/junk filter for all snacks search flows.
+-- Lets gitignored files (e.g. .env*) surface while keeping build output out.
+local search_excludes = {
+  "node_modules",
+  ".git",
+  "build",
+  "dist",
+  "coverage",
+  ".swc",
+  ".next",
+  ".turbo",
+  ".astro",
+  ".vite",
+  ".rsbuild",
+  ".expo",
+  ".expo-shared",
+  "ios/Pods",
+  "ios/build",
+  "ios/DerivedData",
+  "android/.gradle",
+  "android/build",
+  ".gradle",
+  ".yarn/cache",
+  ".pnp.cjs",
+  ".pnp.loader.mjs",
+  ".vercel",
+  ".wrangler",
+  "supabase/.branches",
+  "supabase/.temp",
+  "*.log",
+  ".DS_Store",
+  ".cache",
+  ".parcel-cache",
+}
+
+-- Reusable opts for the 3 snacks search flows: files, grep, explorer.
+-- hidden = show dotfiles; ignored = include gitignored; exclude = drop artifacts.
+local function searchable(opts)
+  return vim.tbl_deep_extend("force", {
+    hidden = true,
+    ignored = true,
+    exclude = search_excludes,
+  }, opts or {})
+end
+
 return {
   "folke/snacks.nvim",
   lazy = false,
@@ -42,7 +87,7 @@ return {
         },
       },
       sources = {
-        explorer = {
+        explorer = searchable({
           layout = {
             preset = "sidebar",
             layout = {
@@ -55,41 +100,14 @@ return {
               return layout
             end,
           },
-        },
-        files = {
-          hidden = true,
-          exclude = { "node_modules", "build", "coverage", ".swc", "dist" },
-        },
-        grep = {
-          hidden = true,
-          exclude = { "node_modules", "build", "coverage", ".swc", "dist" },
-          args = {
-            "--ignore-case",
-            "--fixed-strings",
-            "--sort=path",
-            "--glob=!**/.git/**",
-            "--glob=!**/node_modules/**",
-            "--glob=!**/build/**",
-            "--glob=!**/coverage/**",
-            "--glob=!**/.swc/**",
-            "--glob=!**/dist/**",
-          },
-        },
-        grep_word = {
-          hidden = true,
-          exclude = { "node_modules", "build", "coverage", ".swc", "dist" },
-          args = {
-            "--ignore-case",
-            "--fixed-strings",
-            "--sort=path",
-            "--glob=!**/.git/**",
-            "--glob=!**/node_modules/**",
-            "--glob=!**/build/**",
-            "--glob=!**/coverage/**",
-            "--glob=!**/.swc/**",
-            "--glob=!**/dist/**",
-          },
-        },
+        }),
+        files = searchable(),
+        grep = searchable({
+          args = { "--ignore-case", "--fixed-strings", "--sort=path" },
+        }),
+        grep_word = searchable({
+          args = { "--ignore-case", "--fixed-strings", "--sort=path" },
+        }),
       },
     },
   },
@@ -117,7 +135,7 @@ return {
   end,
   keys = {
     -- Explorer
-    { "<leader>e", function() Snacks.explorer({ hidden = true, ignored = true }) end, desc = "File Explorer" },
+    { "<leader>e", function() Snacks.explorer(searchable()) end, desc = "File Explorer" },
 
     -- Files
     { "<leader>fF", function() Snacks.picker.recent() end, desc = "Find Files (Frecency)" },
@@ -125,6 +143,13 @@ return {
     { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
     { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
     { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config Files" },
+    {
+      "<leader>fe",
+      function()
+        Snacks.picker.files(searchable({ glob = { "**/.env", "**/.env.*" } }))
+      end,
+      desc = "Find Env Files",
+    },
 
     -- Search
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Live Grep" },
@@ -135,21 +160,10 @@ return {
           if not glob or glob == "" then
             return
           end
-          Snacks.picker.grep({
-            hidden = true,
+          Snacks.picker.grep(searchable({
             glob = glob,
-            exclude = { "node_modules", "build", "coverage", ".swc", "dist" },
-            args = {
-              "--ignore-case",
-              "--sort=path",
-              "--glob=!**/.git/**",
-              "--glob=!**/node_modules/**",
-              "--glob=!**/build/**",
-              "--glob=!**/coverage/**",
-              "--glob=!**/.swc/**",
-              "--glob=!**/dist/**",
-            },
-          })
+            args = { "--ignore-case", "--sort=path" },
+          }))
         end)
       end,
       desc = "Live Grep with Path Filter",

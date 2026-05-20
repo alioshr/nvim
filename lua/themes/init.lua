@@ -4,5 +4,5 @@
 --   apply        function that calls setup() + colorscheme()
 --   highlights   { float_border, cursorline, filename_fg }
 --   lualine_theme function returning a lualine theme table
-return require("themes.catppuccin-frappe")
--- return require("themes.kanagawa-lotus")
+return require("themes.kanagawa-lotus")
+-- return require("themes.catppuccin-frappe")

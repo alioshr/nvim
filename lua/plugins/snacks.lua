@@ -33,13 +33,23 @@ local search_excludes = {
   ".parcel-cache",
 }
 
--- Reusable opts for the 3 snacks search flows: files, grep, explorer.
+-- Reusable opts for the search flows: files, grep.
 -- hidden = show dotfiles; ignored = include gitignored; exclude = drop artifacts.
 local function searchable(opts)
   return vim.tbl_deep_extend("force", {
     hidden = true,
     ignored = true,
     exclude = search_excludes,
+  }, opts or {})
+end
+
+-- Opts for the explorer (tree view + its own fd search).
+-- Reveals everything: dotfiles + gitignored, and NO artifact excludes, so
+-- node_modules/.git/etc. are browsable and explorer search finds them.
+local function explorable(opts)
+  return vim.tbl_deep_extend("force", {
+    hidden = true,
+    ignored = true,
   }, opts or {})
 end
 
@@ -87,7 +97,7 @@ return {
         },
       },
       sources = {
-        explorer = searchable({
+        explorer = explorable({
           layout = {
             preset = "sidebar",
             layout = {
@@ -135,7 +145,7 @@ return {
   end,
   keys = {
     -- Explorer
-    { "<leader>e", function() Snacks.explorer(searchable()) end, desc = "File Explorer" },
+    { "<leader>e", function() Snacks.explorer(explorable()) end, desc = "File Explorer" },
 
     -- Files
     { "<leader>fF", function() Snacks.picker.recent() end, desc = "Find Files (Frecency)" },

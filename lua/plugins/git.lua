@@ -20,7 +20,6 @@ return {
     "NeogitOrg/neogit",
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Git: Open panel" },
-      { "<leader>hd", "<cmd>DiffviewOpen<cr>", desc = "Git: Open 3 way conflict resolution" },
     },
     config = function()
       -- Disable swap files for Neogit buffers to prevent E325 errors
@@ -42,7 +41,7 @@ return {
           },
         },
         integrations = {
-          diffview = true,
+          diffview = false,
           codediff = true,
           snacks = true,
         },
@@ -61,11 +60,12 @@ return {
     end,
   },
   {
-    "sindrets/diffview.nvim",
-  },
-  {
     "esmuellert/codediff.nvim",
     cmd = "CodeDiff",
+    keys = {
+      -- Explorer lists changes and conflicts; a conflicted file opens the 3-way merge view
+      { "<leader>hd", "<cmd>CodeDiff<cr>", desc = "Git: Open diff / conflict resolution" },
+    },
     opts = {
       keymaps = {
         explorer = {
@@ -75,6 +75,7 @@ return {
     },
     config = function(_, opts)
       require("codediff").setup(opts)
+      require("scripts.codediff-legacy-session").install()
 
       -- Force wrap on codediff diff windows
       vim.api.nvim_create_autocmd("OptionSet", {

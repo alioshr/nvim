@@ -67,6 +67,9 @@ return {
       { "<leader>hd", "<cmd>CodeDiff<cr>", desc = "Git: Open diff / conflict resolution" },
     },
     opts = {
+      diff = {
+        layout = "inline",
+      },
       keymaps = {
         explorer = {
           hover = "<leader>K",

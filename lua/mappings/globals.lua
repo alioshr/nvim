@@ -52,6 +52,13 @@ vim.keymap.set("n", "<localleader>j", "<C-w>j", { desc = "Move to bottom split" 
 vim.keymap.set("n", "<localleader>k", "<C-w>k", { desc = "Move to top split" })
 vim.keymap.set("n", "<localleader>l", "<C-w>l", { desc = "Move to right split" })
 
+-- C-h/j/k/l: nvim splits, then tmux panes, then the corral sidebar (~/Documents/dev/personal/corral)
+local corral = vim.fn.expand("~/Documents/dev/personal/corral")
+if vim.uv.fs_stat(corral .. "/lua/corral/nav.lua") then
+  vim.opt.rtp:append(corral)
+  require("corral.nav").setup()
+end
+
 -- Split resize
 vim.keymap.set("n", "<A-Left>", ":vertical resize -2<CR>", { desc = "Decrease split width" })
 vim.keymap.set("n", "<A-Down>", ":resize +2<CR>", { desc = "Increase split height" })

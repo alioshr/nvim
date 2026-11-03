@@ -2,7 +2,11 @@ return {
   "saghen/blink.cmp",
   dependencies = { "saghen/blink.lib" },
   build = function()
+    -- macOS 27 strip corrupts the dylib ("mis-aligned LINKEDIT string pool"), so skip it
+    local strip = vim.env.CARGO_PROFILE_RELEASE_STRIP
+    vim.env.CARGO_PROFILE_RELEASE_STRIP = "none"
     require("blink.cmp").build():pwait()
+    vim.env.CARGO_PROFILE_RELEASE_STRIP = strip
   end,
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config

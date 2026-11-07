@@ -129,7 +129,7 @@ return {
       if ok and not vim.tbl_isempty(float_title) then
         float_title.bg = nil
         float_title.ctermbg = nil
-        vim.api.nvim_set_hl(0, "FloatTitle", float_title)
+        vim.api.nvim_set_hl(0, "FloatTitle", float_title --[[@as vim.api.keyset.highlight]])
       end
 
       vim.api.nvim_set_hl(0, "SnacksTitle", { link = "FloatTitle" })

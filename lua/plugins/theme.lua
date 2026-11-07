@@ -19,7 +19,7 @@ return {
         if ok and not vim.tbl_isempty(hl) then
           hl.bg = nil
           hl.ctermbg = nil
-          vim.api.nvim_set_hl(0, group, hl)
+          vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
         else
           vim.api.nvim_set_hl(0, group, { link = fallback_link })
         end

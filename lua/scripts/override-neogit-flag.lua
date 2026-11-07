@@ -1,7 +1,7 @@
 -- Enhanced function to override neogit switch flags
----@param popup The popup object from neogit builder
----@param switches Array of switch names to modify (e.g., {"no-verify", "force"})
----@param options Optional configuration { enabled = boolean, persisted = boolean }
+---@param popup table The popup object from neogit builder
+---@param switches string[] Switch names to modify (e.g., {"no-verify", "force"})
+---@param options? { enabled?: boolean, persisted?: boolean }
 local function overrideNeogitFlags(popup, switches, options)
   -- Default options (similar to JS default parameters)
   options = options or {}

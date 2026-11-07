@@ -12,7 +12,7 @@ local function get_visual_selection()
 
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
-  local lines = vim.fn.getline(start_pos[2], end_pos[2])
+  local lines = vim.fn.getline(start_pos[2], end_pos[2]) --[[@as string[] ]]
 
   if #lines == 0 then
     return nil
@@ -46,6 +46,14 @@ local function prompt_expression(prompt, default_value)
   return expression
 end
 
+-- dapui marks width/height as required, but they are optional at runtime.
+---@param expression string|nil
+---@param context "repl"|"hover"
+local function eval(expression, context)
+  ---@diagnostic disable-next-line: missing-fields
+  require("dapui").eval(expression, { enter = false, context = context })
+end
+
 vim.keymap.set("n", "<Leader>dt", with_dap(function(dap)
   dap.toggle_breakpoint()
 end), { desc = "Debugger: Toggle breakpoint" })
@@ -54,10 +62,7 @@ vim.keymap.set("n", "<Leader>dB", with_dap(function(dap)
   local condition = vim.fn.input("Breakpoint condition (optional): ")
   local hit_condition = vim.fn.input("Hit count (optional): ")
 
-  condition = condition ~= "" and condition or nil
-  hit_condition = hit_condition ~= "" and hit_condition or nil
-
-  dap.toggle_breakpoint(condition, hit_condition)
+  dap.toggle_breakpoint(condition ~= "" and condition or nil, hit_condition ~= "" and hit_condition or nil)
 end), { desc = "Debugger: Set conditional breakpoint" })
 
 vim.keymap.set("n", "<Leader>dbc", with_dap(function(dap)
@@ -73,17 +78,17 @@ vim.keymap.set("n", "<Leader>do", function()
 end, { desc = "Debugger: Toggle DAP UI" })
 
 vim.keymap.set({ "n", "v" }, "<Leader>de", function()
-  require("dapui").eval(current_expression(), { enter = false, context = "repl" })
+  eval(current_expression(), "repl")
 end, { desc = "Debugger: Evaluate under cursor/selection (repl context)" })
 
 vim.keymap.set({ "n", "v" }, "<Leader>dE", function()
-  require("dapui").eval(current_expression(), { enter = false, context = "hover" })
+  eval(current_expression(), "hover")
 end, { desc = "Debugger: Evaluate under cursor/selection (hover context)" })
 
 vim.keymap.set("n", "<Leader>dx", function()
   local expression = prompt_expression("Evaluate expression: ")
   if expression then
-    require("dapui").eval(expression, { enter = false, context = "repl" })
+    eval(expression, "repl")
   end
 end, { desc = "Debugger: Evaluate custom expression (repl context)" })
 

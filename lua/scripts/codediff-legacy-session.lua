@@ -59,6 +59,7 @@ function M.install()
   end
 
   local create = view.create
+  ---@diagnostic disable-next-line: duplicate-set-field
   view.create = function(session_config, ...)
     return create(M.normalize(session_config, path), ...)
   end

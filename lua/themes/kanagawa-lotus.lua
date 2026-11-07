@@ -3,6 +3,7 @@ return {
   plugin = { "rebelot/kanagawa.nvim" },
 
   apply = function()
+    ---@diagnostic disable-next-line: missing-fields
     require("kanagawa").setup({
       compile = false,
       undercurl = true,

@@ -61,7 +61,7 @@ return {
           hl.ctermbg = nil
           hl.link = nil
           hl.default = nil
-          vim.api.nvim_set_hl(0, group, hl)
+          vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
         else
           vim.api.nvim_set_hl(0, group, { bg = "NONE" })
         end

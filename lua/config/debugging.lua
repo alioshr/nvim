@@ -35,6 +35,7 @@ local colors_set = false
 local function sign_column_background()
   local sign_column_hl = vim.api.nvim_get_hl(0, { name = "SignColumn" })
   local bg = "NONE"
+  ---@type string|integer
   local ctermbg = "NONE"
 
   if sign_column_hl.bg then

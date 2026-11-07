@@ -10,6 +10,7 @@ return {
     -- Accents that must stay far from the comment gray (CIELAB ΔE >= 18)
     local slate = "#54859e" -- types; default lack #708090 (ΔE 10.9 from comments)
     local taupe = "#937e63" -- calls; was #8a7f72 (ΔE 9.2 from comments)
+    ---@diagnostic disable-next-line: missing-fields
     lackluster.setup({
       -- No near-white: dim the 3 brightest palette colors (contrast on #131313)
       tweak_color = {

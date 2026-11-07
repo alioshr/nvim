@@ -44,6 +44,7 @@ return {
         border = "rounded", -- Options: "none", "single", "double", "rounded", "solid", "shadow"
         winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
+          padding = 1,
           treesitter = { "lsp" },
           columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
         },

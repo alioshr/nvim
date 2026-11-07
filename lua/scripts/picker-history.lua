@@ -1,5 +1,8 @@
 local resume = require("snacks.picker.resume")
 
+---@class PickerHistoryState: snacks.picker.resume.State
+---@field _symbol? string
+
 -- Sources that use live/streaming finders and should not cache items
 local live_sources = {
   grep = true,
@@ -14,6 +17,7 @@ local live_sources = {
 
 -- Patch resume.add to keep multiple entries per source
 local orig_add = resume.add
+---@diagnostic disable-next-line: duplicate-set-field
 resume.add = function(picker)
   orig_add(picker)
   local source = picker.opts.source or "custom"
@@ -21,7 +25,7 @@ resume.add = function(picker)
     resume.state[source] = nil
     return
   end
-  local state = resume.state[source]
+  local state = resume.state[source] --[[@as PickerHistoryState?]]
   if not state then
     return
   end
@@ -49,6 +53,7 @@ local function picker_history()
   local seen_keys = {}
 
   for key, state in pairs(resume.state) do
+    ---@cast state PickerHistoryState
     local source = key:match("^(.-)::") or key
     local is_unique_key = key:find("::") ~= nil
 
@@ -69,6 +74,7 @@ local function picker_history()
   end
 
   for key, state in pairs(resume.state) do
+    ---@cast state PickerHistoryState
     if not key:find("::") and not seen_keys[key] and key ~= "custom" then
       states[#states + 1] = {
         source = key,

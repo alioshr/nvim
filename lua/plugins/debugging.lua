@@ -38,6 +38,7 @@ return {
         },
       },
       force_buffers = true,
+      wrap = false,
       icons = {
         collapsed = "",
         current_frame = "",
